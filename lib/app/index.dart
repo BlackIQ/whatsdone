@@ -20,7 +20,7 @@ class _WhatsDoneState extends State<WhatsDone> {
       _selectedIndex = index;
     });
     // pageController.jumpToPage(index);
-    pageController.animateToPage(index, duration: Duration(milliseconds: 1000), curve: Curves.bounceIn);
+    pageController.animateToPage(index, duration: Duration(milliseconds: 1000), curve: Curves.ease);
   }
 
   @override
