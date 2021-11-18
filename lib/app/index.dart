@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:whatsdone/app/navigator/button_navigator.dart';
 import 'package:whatsdone/app/pages/add/add.dart';
 import 'package:whatsdone/app/pages/done/done.dart';
@@ -26,7 +27,10 @@ class _WhatsDoneState extends State<WhatsDone> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Whats Done!?'),
+        title: Text(
+          'Whats Done!?',
+          style: GoogleFonts.patrickHand(),
+        ),
         centerTitle: true,
       ),
       body: PageView(
