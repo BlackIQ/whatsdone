@@ -8,8 +8,13 @@ class AddTask extends StatefulWidget {
 class _AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Add'),
+    return SingleChildScrollView(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        children: <Widget>[
+          Text('Add'),
+        ],
+      ),
     );
   }
 }

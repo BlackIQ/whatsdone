@@ -8,8 +8,13 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Home'),
+    return SingleChildScrollView(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        children: <Widget>[
+          Text('Home'),
+        ],
+      ),
     );
   }
 }

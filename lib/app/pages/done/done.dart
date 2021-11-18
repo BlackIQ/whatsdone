@@ -8,8 +8,13 @@ class DoneTasks extends StatefulWidget {
 class _DoneTasksState extends State<DoneTasks> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Done'),
+    return SingleChildScrollView(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        children: <Widget>[
+          Text('Done'),
+        ],
+      ),
     );
   }
 }
