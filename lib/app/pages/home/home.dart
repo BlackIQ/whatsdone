@@ -23,9 +23,7 @@ class _HomeState extends State<Home> {
                 key: UniqueKey(),
                 child: ListTile(
                   title: Container(
-                    // padding: EdgeInsets.all(5),
                     margin: EdgeInsets.all(5),
-                    // color: Colors.grey[200],
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -54,14 +52,13 @@ class _HomeState extends State<Home> {
                 secondaryBackground: Container(
                   color: Colors.red,
                   child: Icon(
-                    Icons.cancel,
+                    Icons.delete,
                     color: Colors.white,
                   ),
                 ),
               );
             },
-            separatorBuilder: (BuildContext context, int index) =>
-                const Divider(color: Colors.deepPurple),
+            separatorBuilder: (BuildContext context, int index) => Divider(color: Colors.deepPurple),
           )
         : Center(
             child: Column(
