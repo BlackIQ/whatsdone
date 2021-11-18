@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:whatsdone/app/navigator/button_navigator.dart';
+import 'package:whatsdone/app/pages/add/add.dart';
+import 'package:whatsdone/app/pages/done/done.dart';
+import 'package:whatsdone/app/pages/home/home.dart';
 
 class WhatsDone extends StatefulWidget {
   @override
@@ -29,9 +32,9 @@ class _WhatsDoneState extends State<WhatsDone> {
       body: PageView(
         controller: pageController,
         children: <Widget>[
-          Container(color: Colors.red),
-          Container(color: Colors.green),
-          Container(color: Colors.blue),
+          Home(),
+          AddTask(),
+          DoneTasks(),
         ],
       ),
       bottomNavigationBar: bNavigator(
