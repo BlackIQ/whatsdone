@@ -16,7 +16,7 @@ class DrawerWidget extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -61,13 +61,39 @@ class DrawerWidget extends StatelessWidget {
               ),
               applicationVersion: '1.0.0',
               applicationName: 'Whats Done!?',
-              applicationLegalese: 'Track your TODOs with Whats Done.'
+              applicationLegalese: 'Track your TODOs with Whats Done.',
+              children: [
+                SizedBox(height: 20),
+                Divider(color: Colors.deepPurple),
+                Text(
+                  'Who is my developer!?',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.deepPurple,
+                    // fontWeight: FontWeight.bold,
+                  ),
+                ),
+                DrawerItemWidget(
+                  text: 'About developer',
+                  icon: Icons.laptop_mac,
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Developer())),
+                ),
+                SizedBox(height: 15),
+                Text(
+                  'Also check my website!',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.deepPurple,
+                    // fontWeight: FontWeight.bold,
+                  ),
+                ),
+                DrawerItemWidget(
+                  text: 'Open whatsdone.blackiq.ir',
+                  icon: Icons.cloud,
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Developer())),
+                ),
+              ],
             ),
-          ),
-          DrawerItemWidget(
-            text: 'about developer',
-            icon: Icons.laptop_mac,
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Developer())),
           ),
           DrawerItemWidget(
             text: 'Exit',
