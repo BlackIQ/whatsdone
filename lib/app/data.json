@@ -1,0 +1,28 @@
+{
+  "tasks": [
+    {
+      "name": "In Home",
+      "date": "2021 Nov 1",
+      "status": "home",
+      "id": 1
+    },
+    {
+      "name": "In Done",
+      "date": "2021 Nov 2",
+      "status": "done",
+      "id": 2
+    },
+    {
+      "name": "In Trash",
+      "date": "2021 Nov 3",
+      "status": "trash",
+      "id": 3
+    },
+    {
+      "name": "In Deleted",
+      "date": "2021 Nov 4",
+      "status": "deleted",
+      "id": 4
+    }
+  ]
+}
