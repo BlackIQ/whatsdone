@@ -39,9 +39,12 @@ class _DoneTasksState extends State<DoneTasks> {
                   ),
                 ),
                 onDismissed: (direction) {
-                  setState(() {
-                    itemsList.removeAt(index);
-                  });
+                  if (direction == DismissDirection.endToStart) {
+                    // Delete
+                  }
+                  else {
+                    // Un Done
+                  }
                 },
                 background: Container(
                   color: Colors.blueAccent,

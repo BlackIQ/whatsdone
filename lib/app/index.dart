@@ -43,7 +43,7 @@ class _WhatsDoneState extends State<WhatsDone> {
           DoneTasks(),
         ],
       ),
-      bottomNavigationBar: bNavigator(
+      bottomNavigationBar: BottomNavigatorWidget(
         change: changePage,
         selected: _selectedIndex,
       ),

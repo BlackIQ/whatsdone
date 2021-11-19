@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class bNavigator extends StatelessWidget {
-  bNavigator({@required this.change, @required this.selected});
+class BottomNavigatorWidget extends StatelessWidget {
+  BottomNavigatorWidget({@required this.change, @required this.selected});
   final change;
   final selected;
 

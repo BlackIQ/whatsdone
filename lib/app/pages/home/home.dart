@@ -38,9 +38,12 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 onDismissed: (direction) {
-                  setState(() {
-                    itemsList.removeAt(index);
-                  });
+                  if (direction == DismissDirection.endToStart) {
+                    // Delete
+                  }
+                  else {
+                    // Check
+                  }
                 },
                 background: Container(
                   color: Colors.green,
