@@ -18,6 +18,7 @@ class _TrashState extends State<Trash> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         centerTitle: true,
         title: Text(
           'Trash',
@@ -41,7 +42,7 @@ class _TrashState extends State<Trash> {
                     Text(
                       'Date',
                       style:
-                      TextStyle(fontSize: 12, color: Colors.deepPurple),
+                      TextStyle(fontSize: 12, color: Colors.red),
                     ),
                   ],
                 ),
@@ -71,7 +72,7 @@ class _TrashState extends State<Trash> {
             ),
           );
         },
-        separatorBuilder: (BuildContext context, int index) => Divider(color: Colors.deepPurple),
+        separatorBuilder: (BuildContext context, int index) => Divider(color: Colors.red),
       )
           : Center(
         child: Column(
