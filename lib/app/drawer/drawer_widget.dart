@@ -52,7 +52,17 @@ class DrawerWidget extends StatelessWidget {
           DrawerItemWidget(
             text: 'About app',
             icon: Icons.perm_device_information,
-            onTap: () => showAboutDialog(context: context),
+            onTap: () => showAboutDialog(
+              context: context,
+              applicationIcon: Image.asset(
+                'asset/logo.png',
+                height: 50,
+                width: 50,
+              ),
+              applicationVersion: '1.0.0',
+              applicationName: 'Whats Done!?',
+              applicationLegalese: 'Track your TODOs with Whats Done.'
+            ),
           ),
           DrawerItemWidget(
             text: 'about developer',
