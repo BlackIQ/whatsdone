@@ -6,12 +6,17 @@ class DoneTasks extends StatefulWidget {
 }
 
 class _DoneTasksState extends State<DoneTasks> {
-  final List<String> itemsList = [
-    'A',
-    'B',
-    'C',
-    'D',
-  ];
+  List<Map> itemsList = [];
+
+  // void check() {
+  //   for (int counter = 0; counter < allItems.length; counter++) {
+  //     if (allItems[counter]['status'] == 'done') {
+  //       setState(() {
+  //         itemsList.add(allItems[counter]);
+  //       });
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +32,11 @@ class _DoneTasksState extends State<DoneTasks> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('${itemsList[index]}'),
+                        Text('${itemsList[index]['name']}'),
                         SizedBox(height: 5),
                         Text(
-                          'Date',
-                          style:
-                              TextStyle(fontSize: 12, color: Colors.deepPurple),
+                          '${itemsList[index]['date']}',
+                          style: TextStyle(fontSize: 12, color: Colors.deepPurple),
                         ),
                       ],
                     ),
@@ -40,10 +44,10 @@ class _DoneTasksState extends State<DoneTasks> {
                 ),
                 onDismissed: (direction) {
                   if (direction == DismissDirection.endToStart) {
-                    // Delete
+                    // delete(index);
                   }
                   else {
-                    // Un Done
+                    // home(index);
                   }
                 },
                 background: Container(

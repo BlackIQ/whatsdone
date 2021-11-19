@@ -6,16 +6,21 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final List<String> itemsList = [
-    'A',
-    'B',
-    'C',
-    'D',
-  ];
+  List<Map> itemsList = [];
+
+  // void check() {
+  //   for (int counter = 0; counter < allItems.length; counter++) {
+  //     if (allItems[counter]['status'] == 'home') {
+  //       setState(() {
+  //         itemsList.add(allItems[counter]);
+  //       });
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return itemsList.length > 0
+    return itemsList.length != 0
         ? ListView.separated(
             itemCount: itemsList.length,
             itemBuilder: (context, index) {
@@ -27,10 +32,10 @@ class _HomeState extends State<Home> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('${itemsList[index]}'),
+                        Text('${itemsList[index]['name']}'),
                         SizedBox(height: 5),
                         Text(
-                          'Date',
+                          '${itemsList[index]['date']}',
                           style: TextStyle(fontSize: 12, color: Colors.deepPurple),
                         ),
                       ],
@@ -39,10 +44,10 @@ class _HomeState extends State<Home> {
                 ),
                 onDismissed: (direction) {
                   if (direction == DismissDirection.endToStart) {
-                    // Delete
+                    // trash(index);
                   }
                   else {
-                    // Check
+                    // done(index);
                   }
                 },
                 background: Container(
