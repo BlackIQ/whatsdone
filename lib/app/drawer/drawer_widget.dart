@@ -17,23 +17,34 @@ class DrawerWidget extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.all(15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
+              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text(
-                  'Whats Done!?',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepPurple,
-                  ),
+                Image.asset(
+                  'asset/logo.png',
+                  height: 50,
+                  width: 50,
                 ),
-                Text(
-                  'Track your TODOs with me!',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.deepPurple,
-                  ),
+                SizedBox(width: 15),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Whats Done!?',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                    Text(
+                      'Track your TODOs with me!',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
