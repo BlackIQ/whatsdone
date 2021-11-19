@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:whatsdone/app/drawer/drawer_widget.dart';
 import 'package:whatsdone/app/navigator/button_navigator.dart';
 import 'package:whatsdone/app/pages/add/add.dart';
 import 'package:whatsdone/app/pages/done/done.dart';
@@ -26,6 +27,7 @@ class _WhatsDoneState extends State<WhatsDone> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerWidget(),
       appBar: AppBar(
         title: Text(
           'Whats Done!?',
