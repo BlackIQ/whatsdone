@@ -7,12 +7,7 @@ class Trash extends StatefulWidget {
 }
 
 class _TrashState extends State<Trash> {
-  final List<String> itemsList = [
-    'A',
-    'B',
-    'C',
-    'D',
-  ];
+  final List<String> itemsList = [];
 
   @override
   Widget build(BuildContext context) {
