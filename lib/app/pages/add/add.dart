@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsdone/app/data/data.dart';
 
 class AddTask extends StatefulWidget {
   @override
@@ -47,7 +48,7 @@ class _AddTaskState extends State<AddTask> {
                   changeText('');
                 }
                 _formKey.currentState!.save();
-                print(_task);
+                insert(_task);
               },
               child: Text(
                 'Add this task'
