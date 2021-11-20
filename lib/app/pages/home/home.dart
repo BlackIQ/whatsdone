@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:whatsdone/app/data/data.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -6,17 +7,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Map> itemsList = [];
-
-  // void check() {
-  //   for (int counter = 0; counter < allItems.length; counter++) {
-  //     if (allItems[counter]['status'] == 'home') {
-  //       setState(() {
-  //         itemsList.add(allItems[counter]);
-  //       });
-  //     }
-  //   }
-  // }
+  List itemsList = [
+    {"name": "fuck", "date": "2021 Nov 19", "status": "home", "id": 147},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +38,9 @@ class _HomeState extends State<Home> {
                 onDismissed: (direction) {
                   if (direction == DismissDirection.endToStart) {
                     // trash(index);
+                    setState(() {
+                      itemsList.removeAt(index);
+                    });
                   }
                   else {
                     // done(index);
