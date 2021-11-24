@@ -101,7 +101,7 @@ class DrawerWidget extends StatelessWidget {
                 DrawerItemWidget(
                   text: 'Open whatsdone.blackiq.ir',
                   icon: Icons.cloud,
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Developer())),
+                  onTap: () {},
                 ),
               ],
             ),
