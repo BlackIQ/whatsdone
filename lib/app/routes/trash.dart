@@ -7,7 +7,10 @@ class Trash extends StatefulWidget {
 }
 
 class _TrashState extends State<Trash> {
-  final List<String> itemsList = [];
+  List<Map> itemsList = [
+    {'name': 'Issues in Trash', 'date': 'Nov 15 2021'},
+    {'name': 'Watch HIMYM', 'date': 'Nov 21 2021'},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +35,11 @@ class _TrashState extends State<Trash> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('${itemsList[index]}'),
+                    Text('${itemsList[index]['name']}'),
                     SizedBox(height: 5),
                     Text(
-                      'Date',
-                      style:
-                      TextStyle(fontSize: 12, color: Colors.red),
+                      '${itemsList[index]['date']}',
+                      style: TextStyle(fontSize: 12, color: Colors.deepPurple),
                     ),
                   ],
                 ),
@@ -45,7 +47,9 @@ class _TrashState extends State<Trash> {
             ),
             onDismissed: (direction) {
               if (direction == DismissDirection.endToStart) {
-                // Delete
+                setState(() {
+                  itemsList.removeAt(index);
+                });
               }
               else {
                 // Un Done

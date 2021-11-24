@@ -7,8 +7,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List itemsList = [
-    {"name": "fuck", "date": "2021 Nov 19", "status": "home", "id": 147},
+  List<Map> itemsList = [
+    {'name': 'Go School', 'date': 'Nov 20 2021'},
+    {'name': 'Go Home', 'date': 'Nov 19 2021'},
   ];
 
   @override

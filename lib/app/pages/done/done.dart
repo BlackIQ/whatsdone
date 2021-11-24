@@ -6,17 +6,10 @@ class DoneTasks extends StatefulWidget {
 }
 
 class _DoneTasksState extends State<DoneTasks> {
-  List<Map> itemsList = [];
-
-  // void check() {
-  //   for (int counter = 0; counter < allItems.length; counter++) {
-  //     if (allItems[counter]['status'] == 'done') {
-  //       setState(() {
-  //         itemsList.add(allItems[counter]);
-  //       });
-  //     }
-  //   }
-  // }
+  List<Map> itemsList = [
+    {'name': 'Fix navbar', 'date': 'Nov 23 2021'},
+    {'name': 'Fix color', 'date': 'Nov 14 2021'},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +37,9 @@ class _DoneTasksState extends State<DoneTasks> {
                 ),
                 onDismissed: (direction) {
                   if (direction == DismissDirection.endToStart) {
-                    // delete(index);
+                    setState(() {
+                      itemsList.removeAt(index);
+                    });
                   }
                   else {
                     // home(index);
