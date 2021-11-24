@@ -39,7 +39,7 @@ class _TrashState extends State<Trash> {
                     SizedBox(height: 5),
                     Text(
                       '${itemsList[index]['date']}',
-                      style: TextStyle(fontSize: 12, color: Colors.deepPurple),
+                      style: TextStyle(fontSize: 12, color: Colors.red),
                     ),
                   ],
                 ),
