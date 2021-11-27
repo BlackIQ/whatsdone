@@ -65,11 +65,27 @@ class _DoneTasksState extends State<DoneTasks> {
                       ),
                       onDismissed: (direction) async {
                         if (direction == DismissDirection.endToStart) {
-                          // TODO: Insert in trash
-                          await DatabaseHelper.instance.remove(task.id!, 'done');
+                          await DatabaseHelper.instance.add(
+                            Tasks(
+                              name: task.name,
+                              id: task.id,
+                              date: task.date,
+                            ),
+                            'trash',
+                          );
+                          await DatabaseHelper.instance
+                              .remove(task.id!, 'done');
                         } else {
-                          // TODO: Insert in home
-                          await DatabaseHelper.instance.remove(task.id!, 'done');
+                          await DatabaseHelper.instance.add(
+                            Tasks(
+                              name: task.name,
+                              id: task.id,
+                              date: task.date,
+                            ),
+                            'home',
+                          );
+                          await DatabaseHelper.instance
+                              .remove(task.id!, 'done');
                         }
                       },
                       background: Container(

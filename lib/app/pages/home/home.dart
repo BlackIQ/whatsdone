@@ -56,7 +56,8 @@ class _HomeState extends State<Home> {
                               SizedBox(height: 5),
                               Text(
                                 task.date!,
-                                style: TextStyle(fontSize: 12, color: Colors.deepPurple),
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.deepPurple),
                               ),
                             ],
                           ),
@@ -64,11 +65,27 @@ class _HomeState extends State<Home> {
                       ),
                       onDismissed: (direction) async {
                         if (direction == DismissDirection.endToStart) {
-                          // TODO: Insert in trash
-                          await DatabaseHelper.instance.remove(task.id!, 'home');
+                          await DatabaseHelper.instance.add(
+                            Tasks(
+                              name: task.name,
+                              id: task.id,
+                              date: task.date,
+                            ),
+                            'trash',
+                          );
+                          await DatabaseHelper.instance
+                              .remove(task.id!, 'home');
                         } else {
-                          // TODO: Insert in done
-                          await DatabaseHelper.instance.remove(task.id!, 'home');
+                          await DatabaseHelper.instance.add(
+                            Tasks(
+                              name: task.name,
+                              id: task.id,
+                              date: task.date,
+                            ),
+                            'done',
+                          );
+                          await DatabaseHelper.instance
+                              .remove(task.id!, 'home');
                         }
                       },
                       background: Container(
