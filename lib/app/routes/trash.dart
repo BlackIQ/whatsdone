@@ -14,6 +14,7 @@ class _TrashState extends State<Trash> {
       appBar: AppBar(
         backgroundColor: Colors.red,
         centerTitle: true,
+        elevation: 0,
         title: Text(
           'Trash',
           style: GoogleFonts.patrickHand(),
@@ -35,14 +36,14 @@ class _TrashState extends State<Trash> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        'Nothing added',
+                        'Trash is empty',
                         style: TextStyle(
                           fontSize: 35,
-                          color: Colors.deepPurple,
+                          color: Colors.red,
                         ),
                       ),
                       Text(
-                        'List is empty',
+                        'Well done',
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.grey,
@@ -67,7 +68,7 @@ class _TrashState extends State<Trash> {
                                 Text(
                                   task.date!,
                                   style: TextStyle(
-                                      fontSize: 12, color: Colors.deepPurple),
+                                      fontSize: 12, color: Colors.red),
                                 ),
                               ],
                             ),
