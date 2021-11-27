@@ -7,13 +7,66 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Map> itemsList = [
-    {'name': 'Go School', 'date': 'Nov 20 2021'},
-    {'name': 'Go Home', 'date': 'Nov 19 2021'},
-  ];
-
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<List<Tasks>>(
+      future: DatabaseHelper.instance.getTasks('home'),
+      builder: (BuildContext context, AsyncSnapshot<List<Tasks>> snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(
+              color: Colors.purple,
+            ),
+          );
+        }
+        return snapshot.data!.isEmpty
+            ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Nothing added',
+                      style: TextStyle(
+                        fontSize: 35,
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                    Text(
+                      'List is empty',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : ListView(
+                children: snapshot.data!.map((task) {
+                  return Center(
+                    child: ListTile(
+                      trailing: FlatButton(
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            DatabaseHelper.instance.remove(task.id!);
+                          });
+                        },
+                      ),
+                      title: Text(task.name.toString()),
+                      subtitle: Text(task.id.toString()),
+                    ),
+                  );
+                }).toList(),
+              );
+      },
+    );
+  }
+
+  Widget _page(List itemsList) {
     return itemsList.length != 0
         ? ListView.separated(
             itemCount: itemsList.length,
@@ -30,7 +83,8 @@ class _HomeState extends State<Home> {
                         SizedBox(height: 5),
                         Text(
                           '${itemsList[index]['date']}',
-                          style: TextStyle(fontSize: 12, color: Colors.deepPurple),
+                          style:
+                              TextStyle(fontSize: 12, color: Colors.deepPurple),
                         ),
                       ],
                     ),
@@ -42,8 +96,7 @@ class _HomeState extends State<Home> {
                     setState(() {
                       itemsList.removeAt(index);
                     });
-                  }
-                  else {
+                  } else {
                     // done(index);
                   }
                 },
@@ -63,7 +116,8 @@ class _HomeState extends State<Home> {
                 ),
               );
             },
-            separatorBuilder: (BuildContext context, int index) => Divider(color: Colors.deepPurple),
+            separatorBuilder: (BuildContext context, int index) =>
+                Divider(color: Colors.deepPurple),
           )
         : Center(
             child: Column(
