@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(
-              color: Colors.purple,
+              color: Colors.deepPurple,
             ),
           );
         }
