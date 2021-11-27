@@ -15,10 +15,6 @@ class _AddTaskState extends State<AddTask> {
     var ontime = DateFormat('y/MMM/dd H:m:s').format(DateTime.now());
     int id = Random().nextInt(999);
 
-    print(_tasktxt.text);
-    print(id);
-    print(ontime);
-
     await DatabaseHelper.instance.add(
       Tasks(
         name: _tasktxt.text,
@@ -29,7 +25,6 @@ class _AddTaskState extends State<AddTask> {
     );
     setState(() {
       _tasktxt.clear();
-      _tasktxt.clear();
     });
   }
 
@@ -39,21 +34,24 @@ class _AddTaskState extends State<AddTask> {
       padding: EdgeInsets.all(20),
       child: Card(
         child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(children: <Widget>[
-            TextField(
-              controller: _tasktxt,
-              decoration: InputDecoration(
-                labelText: 'Task name',
-                hintText: 'Do that . . .',
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              TextField(
+                controller: _tasktxt,
+                decoration: InputDecoration(
+                  labelText: 'Task name',
+                  hintText: 'Do that . . .',
+                ),
               ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _submit,
-              child: Text('Add this task'),
-            ),
-          ]),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _submit,
+                child: Text('Add this task'),
+              ),
+            ],
+          ),
         ),
       ),
     );
