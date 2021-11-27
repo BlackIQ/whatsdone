@@ -73,9 +73,9 @@ class _DoneTasksState extends State<DoneTasks> {
                         }
                       },
                       background: Container(
-                        color: Colors.green,
+                        color: Colors.blueAccent,
                         child: Icon(
-                          Icons.check,
+                          Icons.timer,
                           color: Colors.white,
                         ),
                       ),

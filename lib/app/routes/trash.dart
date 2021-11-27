@@ -84,9 +84,9 @@ class _TrashState extends State<Trash> {
                           }
                         },
                         background: Container(
-                          color: Colors.green,
+                          color: Colors.blueAccent,
                           child: Icon(
-                            Icons.check,
+                            Icons.timer,
                             color: Colors.white,
                           ),
                         ),
