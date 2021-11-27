@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:whatsdone/app/data/data.dart';
+import 'dart:math';
+import 'package:intl/intl.dart';
 
 class AddTask extends StatefulWidget {
   @override
@@ -7,55 +8,35 @@ class AddTask extends StatefulWidget {
 }
 
 class _AddTaskState extends State<AddTask> {
+  final TextEditingController _tasktxt = TextEditingController();
+  void _submit() {
+    var ontime = DateFormat('y/MMM/dd H:m:s').format(DateTime.now());
+    int id = Random().nextInt(999);
 
-  String _task = '';
-
-  void changeText(String task) {
-    setState(() {
-      _task = task;
-    });
+    print(_tasktxt.text);
+    print(id);
+    print(ontime);
   }
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: EdgeInsets.all(20),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          // mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Task name',
-              ),
-              validator: (String? value) {
-                if (value!.isEmpty) {
-                  return 'Task name is required';
-                }
-              },
-              onSaved: (String? value) {
-                changeText(value!);
-              },
+      child: Card(
+        child: Column(children: <Widget>[
+          TextField(
+            controller: _tasktxt,
+            decoration: InputDecoration(
+              labelText: 'Task name',
+              hintText: 'Do that . . .',
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                if (!_formKey.currentState!.validate()) {
-                  changeText('');
-                }
-                _formKey.currentState!.save();
-                insert(_task);
-              },
-              child: Text(
-                'Add this task'
-              ),
-            ),
-          ],
-        ),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () => _submit,
+            child: Text('Add this task'),
+          ),
+        ]),
       ),
     );
   }
