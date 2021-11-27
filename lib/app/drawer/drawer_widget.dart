@@ -58,7 +58,12 @@ class DrawerWidget extends StatelessWidget {
           DrawerItemWidget(
             text: 'Trash',
             icon: Icons.delete,
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Trash())),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                fullscreenDialog: true,
+                builder: (context) => Trash(),
+              ),
+            ),
           ),
           DrawerItemWidget(
             text: 'About app',
@@ -81,7 +86,6 @@ class DrawerWidget extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.deepPurple,
-                    // fontWeight: FontWeight.bold,
                   ),
                 ),
                 DrawerItemWidget(
@@ -93,7 +97,6 @@ class DrawerWidget extends StatelessWidget {
                       builder: (context) => Developer(),
                     ),
                   ),
-                  // onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Developer())),
                 ),
                 SizedBox(height: 15),
                 Text(
@@ -101,7 +104,6 @@ class DrawerWidget extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.deepPurple,
-                    // fontWeight: FontWeight.bold,
                   ),
                 ),
                 DrawerItemWidget(
