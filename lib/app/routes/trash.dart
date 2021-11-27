@@ -54,48 +54,31 @@ class _TrashState extends State<Trash> {
                 )
               : ListView(
                   children: snapshot.data!.map((task) {
-                    return Center(
-                      child: Dismissible(
-                        key: UniqueKey(),
-                        child: ListTile(
-                          title: Container(
-                            margin: EdgeInsets.all(5),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(task.name!),
-                                SizedBox(height: 5),
-                                Text(
-                                  task.date!,
-                                  style: TextStyle(
-                                      fontSize: 12, color: Colors.red),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        onDismissed: (direction) async {
-                          if (direction == DismissDirection.endToStart) {
-                            // TODO: Insert in trash
-                            // TODO: Delete in home
-                          } else {
-                            // TODO: Insert in done
-                            // TODO: Delete in home
-                          }
-                        },
-                        background: Container(
-                          color: Colors.blueAccent,
-                          child: Icon(
-                            Icons.timer,
-                            color: Colors.white,
-                          ),
-                        ),
-                        secondaryBackground: Container(
+                    return ListTile(
+                      trailing: FlatButton(
+                        child: Icon(
+                          Icons.delete,
                           color: Colors.red,
-                          child: Icon(
-                            Icons.delete,
-                            color: Colors.white,
-                          ),
+                        ),
+                        onPressed: () {
+                          setState(() async {
+                            await DatabaseHelper.instance.remove(task.id!, 'trash');
+                          });
+                        },
+                      ),
+                      title: Container(
+                        margin: EdgeInsets.all(5),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(task.name!),
+                            SizedBox(height: 5),
+                            Text(
+                              task.date!,
+                              style: TextStyle(
+                                  fontSize: 12, color: Colors.red),
+                            ),
+                          ],
                         ),
                       ),
                     );
