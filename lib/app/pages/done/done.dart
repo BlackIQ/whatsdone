@@ -66,10 +66,10 @@ class _DoneTasksState extends State<DoneTasks> {
                       onDismissed: (direction) async {
                         if (direction == DismissDirection.endToStart) {
                           // TODO: Insert in trash
-                          // TODO: Delete in home
+                          await DatabaseHelper.instance.remove(task.id!, 'done');
                         } else {
-                          // TODO: Insert in done
-                          // TODO: Delete in home
+                          // TODO: Insert in home
+                          await DatabaseHelper.instance.remove(task.id!, 'done');
                         }
                       },
                       background: Container(

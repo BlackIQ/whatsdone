@@ -65,10 +65,10 @@ class _HomeState extends State<Home> {
                       onDismissed: (direction) async {
                         if (direction == DismissDirection.endToStart) {
                           // TODO: Insert in trash
-                          // TODO: Delete in home
+                          await DatabaseHelper.instance.remove(task.id!, 'home');
                         } else {
                           // TODO: Insert in done
-                          // TODO: Delete in home
+                          await DatabaseHelper.instance.remove(task.id!, 'home');
                         }
                       },
                       background: Container(
