@@ -49,7 +49,7 @@ class _AddTaskState extends State<AddTask> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () => _submit,
+              onPressed: _submit,
               child: Text('Add this task'),
             ),
           ]),
