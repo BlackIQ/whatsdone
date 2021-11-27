@@ -37,20 +37,23 @@ class _AddTaskState extends State<AddTask> {
     return SingleChildScrollView(
       padding: EdgeInsets.all(20),
       child: Card(
-        child: Column(children: <Widget>[
-          TextField(
-            controller: _tasktxt,
-            decoration: InputDecoration(
-              labelText: 'Task name',
-              hintText: 'Do that . . .',
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(children: <Widget>[
+            TextField(
+              controller: _tasktxt,
+              decoration: InputDecoration(
+                labelText: 'Task name',
+                hintText: 'Do that . . .',
+              ),
             ),
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () => _submit,
-            child: Text('Add this task'),
-          ),
-        ]),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => _submit,
+              child: Text('Add this task'),
+            ),
+          ]),
+        ),
       ),
     );
   }
