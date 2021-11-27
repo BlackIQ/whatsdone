@@ -87,7 +87,13 @@ class DrawerWidget extends StatelessWidget {
                 DrawerItemWidget(
                   text: 'About developer',
                   icon: Icons.laptop_mac,
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Developer())),
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      fullscreenDialog: true,
+                      builder: (context) => Developer(),
+                    ),
+                  ),
+                  // onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Developer())),
                 ),
                 SizedBox(height: 15),
                 Text(
