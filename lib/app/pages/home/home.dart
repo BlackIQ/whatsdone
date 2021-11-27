@@ -52,12 +52,12 @@ class _HomeState extends State<Home> {
                         ),
                         onPressed: () {
                           setState(() {
-                            DatabaseHelper.instance.remove(task.id!);
+                            DatabaseHelper.instance.(task.id!);
                           });
                         },
                       ),
                       title: Text(task.name.toString()),
-                      subtitle: Text(task.id.toString()),
+                      subtitle: Text(task.date!),
                     ),
                   );
                 }).toList(),
