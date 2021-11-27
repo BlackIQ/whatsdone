@@ -26,7 +26,7 @@ class _TrashState extends State<Trash> {
           if (!snapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(
-                color: Colors.purple,
+                color: Colors.red,
               ),
             );
           }
