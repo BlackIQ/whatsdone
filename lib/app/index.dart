@@ -29,6 +29,7 @@ class _WhatsDoneState extends State<WhatsDone> {
     return Scaffold(
       drawer: DrawerWidget(),
       appBar: AppBar(
+        elevation: 0,
         title: Text(
           'Whats Done!?',
           style: GoogleFonts.patrickHand(),
