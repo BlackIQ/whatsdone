@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsdone/app/data/data.dart';
 
 class DoneTasks extends StatefulWidget {
   @override
@@ -6,18 +7,44 @@ class DoneTasks extends StatefulWidget {
 }
 
 class _DoneTasksState extends State<DoneTasks> {
-  List<Map> itemsList = [
-    {'name': 'Fix navbar', 'date': 'Nov 23 2021'},
-    {'name': 'Fix color', 'date': 'Nov 14 2021'},
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return itemsList.length > 0
-        ? ListView.separated(
-            itemCount: itemsList.length,
-            itemBuilder: (context, index) {
-              return Dismissible(
+    return FutureBuilder<List<Tasks>>(
+      future: DatabaseHelper.instance.getDone(),
+      builder: (BuildContext context, AsyncSnapshot<List<Tasks>> snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(
+              color: Colors.purple,
+            ),
+          );
+        }
+        return snapshot.data!.isEmpty
+            ? Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Nothing added',
+                style: TextStyle(
+                  fontSize: 35,
+                  color: Colors.deepPurple,
+                ),
+              ),
+              Text(
+                'List is empty',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.grey,
+                ),
+              ),
+            ],
+          ),
+        )
+            : ListView(
+          children: snapshot.data!.map((task) {
+            return Center(
+              child: Dismissible(
                 key: UniqueKey(),
                 child: ListTile(
                   title: Container(
@@ -25,30 +52,29 @@ class _DoneTasksState extends State<DoneTasks> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('${itemsList[index]['name']}'),
+                        Text(task.name!),
                         SizedBox(height: 5),
                         Text(
-                          '${itemsList[index]['date']}',
+                          task.date!,
                           style: TextStyle(fontSize: 12, color: Colors.deepPurple),
                         ),
                       ],
                     ),
                   ),
                 ),
-                onDismissed: (direction) {
+                onDismissed: (direction) async {
                   if (direction == DismissDirection.endToStart) {
-                    setState(() {
-                      itemsList.removeAt(index);
-                    });
-                  }
-                  else {
-                    // home(index);
+                    // TODO: Insert in trash
+                    // TODO: Delete in home
+                  } else {
+                    // TODO: Insert in done
+                    // TODO: Delete in home
                   }
                 },
                 background: Container(
-                  color: Colors.blueAccent,
+                  color: Colors.green,
                   child: Icon(
-                    Icons.timer,
+                    Icons.check,
                     color: Colors.white,
                   ),
                 ),
@@ -59,30 +85,11 @@ class _DoneTasksState extends State<DoneTasks> {
                     color: Colors.white,
                   ),
                 ),
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) => Divider(color: Colors.deepPurple),
-          )
-        : Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'You did everything',
-                  style: TextStyle(
-                    fontSize: 35,
-                    color: Colors.green,
-                  ),
-                ),
-                Text(
-                  'congratulations',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.deepPurple,
-                  ),
-                ),
-              ],
-            ),
-          );
+              ),
+            );
+          }).toList(),
+        );
+      },
+    );
   }
 }
