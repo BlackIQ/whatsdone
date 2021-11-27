@@ -8,20 +8,17 @@ class Tasks {
       {this.row,
       required this.name,
       required this.id,
-      required this.status,
       required this.date});
 
   final int? row;
   final String? name;
   final int? id;
-  final String? status;
   final String? date;
 
   factory Tasks.fromMap(Map<String, dynamic> json) => Tasks(
         row: json['row'],
         name: json['name'],
         id: json['id'],
-        status: json['status'],
         date: json['date'],
       );
 
@@ -30,7 +27,6 @@ class Tasks {
       'row': row,
       'name': name,
       'id': id,
-      'status': status,
       'date': date,
     };
   }
@@ -46,7 +42,7 @@ class DatabaseHelper {
 
   Future<Database> _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, 'wd.db');
+    String path = join(documentsDirectory.path, 'w.db');
     return await openDatabase(
       path,
       version: 1,
@@ -56,39 +52,73 @@ class DatabaseHelper {
 
   Future _onCreate(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE tasks(
+      CREATE TABLE home(
         row INTEGER PRIMARY KEY,
         name TEXT,
         id INTEGER,
-        status TEXT,
+        date TEXT
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE done(
+        row INTEGER PRIMARY KEY,
+        name TEXT,
+        id INTEGER,
+        date TEXT
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE trash(
+        row INTEGER PRIMARY KEY,
+        name TEXT,
+        id INTEGER,
         date TEXT
       )
     ''');
   }
 
-  Future<List<Tasks>> getTasks(String status) async {
+  Future<List<Tasks>> getHome() async {
     Database db = await instance.database;
-    var groceries =
-        await db.query('tasks', where: 'status = ?', whereArgs: [status]);
-    List<Tasks> groceryList = groceries.isNotEmpty
-        ? groceries.map((c) => Tasks.fromMap(c)).toList()
+    var home = await db.query('home');
+    List<Tasks> homeList = home.isNotEmpty
+        ? home.map((c) => Tasks.fromMap(c)).toList()
         : [];
-    return groceryList;
+    return homeList;
   }
 
-  Future<int> add(Tasks grocery) async {
+  Future<List<Tasks>> getDone() async {
     Database db = await instance.database;
-    return await db.insert('tasks', grocery.toMap());
+    var done = await db.query('done');
+    List<Tasks> doneList = done.isNotEmpty
+        ? done.map((c) => Tasks.fromMap(c)).toList()
+        : [];
+    return doneList;
   }
 
-  Future<int> remove(int id) async {
+  Future<List<Tasks>> getTrash() async {
     Database db = await instance.database;
-    return await db.delete('tasks', where: 'id = ?', whereArgs: [id]);
+    var trash = await db.query('trash');
+    List<Tasks> trashList = trash.isNotEmpty
+        ? trash.map((c) => Tasks.fromMap(c)).toList()
+        : [];
+    return trashList;
   }
 
-  Future<int> update(Tasks grocery) async {
+  Future<int> add(Tasks grocery, String table) async {
     Database db = await instance.database;
-    return await db.update('tasks', grocery.toMap(),
+    return await db.insert(table, grocery.toMap());
+  }
+
+  Future<int> remove(int id, String table) async {
+    Database db = await instance.database;
+    return await db.delete(table, where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<int> update(Tasks grocery, String table) async {
+    Database db = await instance.database;
+    return await db.update(table, grocery.toMap(),
         where: 'id = ?', whereArgs: [grocery.id]);
   }
 }
