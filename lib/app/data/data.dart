@@ -66,7 +66,7 @@ class DatabaseHelper {
     ''');
   }
 
-  Future<List<Tasks>> getGrocery(String status) async {
+  Future<List<Tasks>> getTasks(String status) async {
     Database db = await instance.database;
     var groceries =
         await db.query('tasks', where: 'status = ?', whereArgs: [status]);
