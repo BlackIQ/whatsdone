@@ -52,37 +52,42 @@ class _TrashState extends State<Trash> {
                     ],
                   ),
                 )
-              : ListView(
-                  children: snapshot.data!.map((task) {
-                    return ListTile(
-                      trailing: FlatButton(
-                        child: Icon(
-                          Icons.delete,
-                          color: Colors.red,
+              : RefreshIndicator(
+                  color: Colors.red,
+                  onRefresh: pageRefresh,
+                  child: ListView(
+                    children: snapshot.data!.map((task) {
+                      return ListTile(
+                        trailing: FlatButton(
+                          child: Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ),
+                          onPressed: () {
+                            setState(() async {
+                              await DatabaseHelper.instance
+                                  .remove(task.id!, 'trash');
+                            });
+                          },
                         ),
-                        onPressed: () {
-                          setState(() async {
-                            await DatabaseHelper.instance.remove(task.id!, 'trash');
-                          });
-                        },
-                      ),
-                      title: Container(
-                        margin: EdgeInsets.all(5),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(task.name!),
-                            SizedBox(height: 5),
-                            Text(
-                              task.date!,
-                              style: TextStyle(
-                                  fontSize: 12, color: Colors.red),
-                            ),
-                          ],
+                        title: Container(
+                          margin: EdgeInsets.all(5),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(task.name!),
+                              SizedBox(height: 5),
+                              Text(
+                                task.date!,
+                                style:
+                                    TextStyle(fontSize: 12, color: Colors.red),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  }).toList(),
+                      );
+                    }).toList(),
+                  ),
                 );
         },
       ),
