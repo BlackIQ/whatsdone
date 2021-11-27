@@ -1,6 +1,7 @@
+import 'package:whatsdone/app/data/data.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 import 'package:intl/intl.dart';
+import 'dart:math';
 
 class AddTask extends StatefulWidget {
   @override
@@ -9,13 +10,26 @@ class AddTask extends StatefulWidget {
 
 class _AddTaskState extends State<AddTask> {
   final TextEditingController _tasktxt = TextEditingController();
-  void _submit() {
+
+  void _submit() async {
     var ontime = DateFormat('y/MMM/dd H:m:s').format(DateTime.now());
     int id = Random().nextInt(999);
 
     print(_tasktxt.text);
     print(id);
     print(ontime);
+
+    await DatabaseHelper.instance.add(
+      Tasks(
+        name: _tasktxt.text,
+        id: id,
+        status: 'home',
+        date: ontime,
+      ),
+    );
+    setState(() {
+      _tasktxt.clear();
+    });
   }
 
   @override
