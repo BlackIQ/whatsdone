@@ -23,9 +23,9 @@ class _AddTaskState extends State<AddTask> {
       Tasks(
         name: _tasktxt.text,
         id: id,
-        status: 'home',
         date: ontime,
       ),
+      'home',
     );
     setState(() {
       _tasktxt.clear();
