@@ -122,3 +122,11 @@ class DatabaseHelper {
         where: 'id = ?', whereArgs: [grocery.id]);
   }
 }
+
+Future<void> pageRefresh() {
+  return Future.delayed(
+    Duration(
+      seconds: 1,
+    ),
+  );
+}
