@@ -29,6 +29,7 @@ class _AddTaskState extends State<AddTask> {
     );
     setState(() {
       _tasktxt.clear();
+      _tasktxt.clear();
     });
   }
 
