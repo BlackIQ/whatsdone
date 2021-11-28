@@ -42,7 +42,7 @@ class DatabaseHelper {
 
   Future<Database> _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, 'w.db');
+    String path = join(documentsDirectory.path, 'whatsdone.db');
     return await openDatabase(
       path,
       version: 1,
