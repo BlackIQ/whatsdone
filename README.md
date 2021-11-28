@@ -18,3 +18,9 @@ Links will be added.
 **Note**
 
 **iOS** app is not published yet.
+
+---
+
+#### Preview
+
+![Preview](docs/pack/videos/intro.mp4)
