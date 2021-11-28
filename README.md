@@ -1,16 +1,20 @@
 # whatsdone
 
-Track your TODOs with WhatsDone
+Track your TODOs with WhatsDone.
 
-## Getting Started
+For more information check [WhatsDone webpage](https://whatsdone.blackiq.ir).
 
-This project is a starting point for a Flutter application.
+### Download
 
-A few resources to get you started if this is your first Flutter project:
+You can download it for your **Android** Devices using [WhatsDone webpage](https://whatsdone.blackiq.ir/app/whatsdone.apk) or linkd below:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Links will be added.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<!-- - MyKet -> [Download](https://flutter.dev) -->
+<!-- - Play Store -> [Download](https://flutter.dev) -->
+
+---
+
+**Note**
+
+**iOS** app is not published yet.
