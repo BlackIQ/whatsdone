@@ -7,6 +7,11 @@ class DoneTasks extends StatefulWidget {
 }
 
 class _DoneTasksState extends State<DoneTasks> {
+
+  void toTrash(int id) {
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Tasks>>(
@@ -65,29 +70,37 @@ class _DoneTasksState extends State<DoneTasks> {
                           ),
                         ),
                       ),
-                      onDismissed: (direction) async {
+                      onDismissed: (direction)  {
                         if (direction == DismissDirection.endToStart) {
-                          await DatabaseHelper.instance.add(
-                            Tasks(
-                              name: task.name,
-                              id: task.id,
-                              date: task.date,
-                            ),
-                            'trash',
-                          );
-                          await DatabaseHelper.instance
-                              .remove(task.id!, 'done');
+                          setState(() {
+                            DatabaseHelper.instance.add(
+                              Tasks(
+                                name: task.name,
+                                id: task.id,
+                                date: task.date,
+                              ),
+                              'trash',
+                            );
+                          });
+                          setState(() {
+                            DatabaseHelper.instance
+                                .remove(task.id!, 'done');
+                          });
                         } else {
-                          await DatabaseHelper.instance.add(
-                            Tasks(
-                              name: task.name,
-                              id: task.id,
-                              date: task.date,
-                            ),
-                            'home',
-                          );
-                          await DatabaseHelper.instance
-                              .remove(task.id!, 'done');
+                          setState(() {
+                            DatabaseHelper.instance.add(
+                              Tasks(
+                                name: task.name,
+                                id: task.id,
+                                date: task.date,
+                              ),
+                              'home',
+                            );
+                          });
+                          setState(() {
+                            DatabaseHelper.instance
+                                .remove(task.id!, 'done');
+                          });
                         }
                       },
                       background: Container(
