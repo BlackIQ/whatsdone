@@ -63,11 +63,9 @@ class _TrashState extends State<Trash> {
                             Icons.delete,
                             color: Colors.red,
                           ),
-                          onPressed: () {
-                            setState(() async {
-                              await DatabaseHelper.instance
-                                  .remove(task.id!, 'trash');
-                            });
+                          onPressed: () async {
+                            await DatabaseHelper.instance
+                                .remove(task.id!, 'trash');
                           },
                         ),
                         title: Container(
