@@ -57,30 +57,36 @@ class _TrashState extends State<Trash> {
                   onRefresh: pageRefresh,
                   child: ListView(
                     children: snapshot.data!.map((task) {
-                      return ListTile(
-                        trailing: FlatButton(
+                      return Dismissible(
+                        key: UniqueKey(),
+                        child: ListTile(
+                          title: Container(
+                            margin: EdgeInsets.all(5),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(task.name!),
+                                SizedBox(height: 5),
+                                Text(
+                                  task.date!,
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.red),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        onDismissed: (direction) {
+                          setState(() {
+                            DatabaseHelper.instance
+                                .remove(task.id!, 'trash');
+                          });
+                        },
+                        background: Container(
+                          color: Colors.red,
                           child: Icon(
                             Icons.delete,
-                            color: Colors.red,
-                          ),
-                          onPressed: () async {
-                            await DatabaseHelper.instance
-                                .remove(task.id!, 'trash');
-                          },
-                        ),
-                        title: Container(
-                          margin: EdgeInsets.all(5),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(task.name!),
-                              SizedBox(height: 5),
-                              Text(
-                                task.date!,
-                                style:
-                                    TextStyle(fontSize: 12, color: Colors.red),
-                              ),
-                            ],
+                            color: Colors.white,
                           ),
                         ),
                       );
