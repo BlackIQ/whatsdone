@@ -1,3 +1,7 @@
+[![badge](https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/com.blackiq.whatsdone)](https://apt.izzysoft.de/fdroid/index/apk/com.blackiq.whatsdone)
+
+[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" height="75">](https://apt.izzysoft.de/fdroid/index/apk/com.blackiq.whatsdone)
+
 # whatsdone
 
 Track your TODOs with WhatsDone.
