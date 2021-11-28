@@ -65,29 +65,37 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                       ),
-                      onDismissed: (direction) async {
+                      onDismissed: (direction) {
                         if (direction == DismissDirection.endToStart) {
-                          await DatabaseHelper.instance.add(
-                            Tasks(
-                              name: task.name,
-                              id: task.id,
-                              date: task.date,
-                            ),
-                            'trash',
-                          );
-                          await DatabaseHelper.instance
-                              .remove(task.id!, 'home');
+                          setState(() {
+                            DatabaseHelper.instance.add(
+                              Tasks(
+                                name: task.name,
+                                id: task.id,
+                                date: task.date,
+                              ),
+                              'trash',
+                            );
+                          });
+                          setState(() {
+                            DatabaseHelper.instance
+                                .remove(task.id!, 'home');
+                          });
                         } else {
-                          await DatabaseHelper.instance.add(
-                            Tasks(
-                              name: task.name,
-                              id: task.id,
-                              date: task.date,
-                            ),
-                            'done',
-                          );
-                          await DatabaseHelper.instance
-                              .remove(task.id!, 'home');
+                          setState(() {
+                            DatabaseHelper.instance.add(
+                              Tasks(
+                                name: task.name,
+                                id: task.id,
+                                date: task.date,
+                              ),
+                              'done',
+                            );
+                          });
+                          setState(() {
+                            DatabaseHelper.instance
+                                .remove(task.id!, 'home');
+                          });
                         }
                       },
                       background: Container(
