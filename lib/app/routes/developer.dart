@@ -19,10 +19,18 @@ class Developer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'Amirhossein Mohamamdi',
+              "Hi! I'm,",
               style: TextStyle(
                 fontSize: 35,
                 fontWeight: FontWeight.bold,
+                color: Colors.deepPurple,
+              ),
+            ),
+            Text(
+              'Amirhossein Mohamamdi',
+              style: TextStyle(
+                fontSize: 30,
+                // fontWeight: FontWeight.bold,
                 color: Colors.deepPurple,
               ),
             ),
@@ -71,6 +79,24 @@ class Developer extends StatelessWidget {
                 SizedBox(width: 20),
                 Text(
                   '+98 901 4784362',
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: Colors.deepPurple,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Icon(
+                  Icons.cloud,
+                  color: Colors.deepPurple,
+                ),
+                SizedBox(width: 20),
+                Text(
+                  'https://blackiq.ir',
                   style: TextStyle(
                     fontSize: 17,
                     color: Colors.deepPurple,
