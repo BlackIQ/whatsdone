@@ -1,24 +1,58 @@
 @import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
-* {
-  font-family: "Patrick Hand", cursive;
-}
-
+/* Common stuff */
 .main {
-  background: white;
+  font-family: "Patrick Hand", cursive;
   color: darkslateblue;
   padding: 3%;
 }
 
-.imgbox {
-  height: 50%;
-  width: 50%;
-}
-
-.r10 {
-  border-radius: 10px;
-}
-
 .right {
   float: right;
+}
+
+.preversion {
+  border: solid 1px grey;
+}
+
+.lastversion {
+  border: solid 1px darkslateblue;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: purple;
+}
+
+/* Images scroll */
+
+.images {
+  overflow: auto;
+  white-space: nowrap;
+}
+.image {
+  height: 15%;
+  width: 15%;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+/* Versions scroll */
+
+.versions {
+  overflow: auto;
+  white-space: nowrap;
+}
+.version {
+  display: inline-block;
+  margin: 5px;
+  border-radius: 5px;
+}
+.version .date {
+  font-size: 15px;
+}
+.version .lastest {
+  color: red;
 }
