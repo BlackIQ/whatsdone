@@ -55,34 +55,45 @@ class _HomeState extends State<Home> {
                   fit: BoxFit.cover,
                 ),
               ),
-              child: Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(user.profile),
-                    radius: 25,
-                  ),
-                  SizedBox(width: 20),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Welcome',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                        ),
+                  Row(
+                    children: <Widget>[
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(user.profile),
+                        radius: 25,
                       ),
-                      Text(
-                        user.name,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      SizedBox(width: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Welcome',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17,
+                            ),
+                          ),
+                          Text(
+                            user.name,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
+                  SizedBox(height: 10),
+                  Text(user.email, style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                  ),),
                 ],
               ),
             ),
