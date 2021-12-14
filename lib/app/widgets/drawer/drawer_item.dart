@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DrawerItems extends StatelessWidget {
   DrawerItems({
@@ -17,7 +18,7 @@ class DrawerItems extends StatelessWidget {
       onTap: onTap,
       title: Row(
         children: <Widget>[
-          Icon(
+          FaIcon(
             icon,
             color: Colors.deepPurple,
           ),
