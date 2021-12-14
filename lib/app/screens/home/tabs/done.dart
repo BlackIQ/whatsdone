@@ -16,7 +16,10 @@ class _DoneTasksState extends State<DoneTasks> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
+      separatorBuilder: (context, index) {
+        return Divider(color: Colors.purple);
+      },
       itemCount: x.length,
       itemBuilder: (context, index) {
         return Dismissible(
@@ -42,9 +45,9 @@ class _DoneTasksState extends State<DoneTasks> {
           ),
           onDismissed: (direction) {
             if (direction == DismissDirection.endToStart) {
-              print('Delete');
+              print('Go to trash');
             } else {
-              print('back to done');
+              print('Go to not');
             }
           },
           background: Container(

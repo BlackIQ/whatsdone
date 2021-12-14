@@ -26,7 +26,10 @@ class _TrashState extends State<Trash> {
           style: GoogleFonts.patrickHand(),
         ),
       ),
-      body: ListView.builder(
+      body: ListView.separated(
+        separatorBuilder: (context, index) {
+          return Divider(color: Colors.red);
+        },
         itemCount: x.length,
         itemBuilder: (context, index) {
           return Dismissible(
