@@ -5,6 +5,7 @@ import 'package:whatsdone/app/screens/home/routes/developer.dart';
 import 'package:whatsdone/app/screens/home/routes/trash.dart';
 import 'package:whatsdone/app/screens/home/tabs/add.dart';
 import 'package:whatsdone/app/screens/home/tabs/done.dart';
+import 'package:whatsdone/app/screens/home/tabs/not.dart';
 import 'dart:io';
 
 import 'package:whatsdone/app/widgets/drawer/drawer_item.dart';
@@ -138,13 +139,12 @@ class _HomeState extends State<Home> {
       body: PageView(
         controller: pageController,
         children: <Widget>[
-          Home(),
+          NotDone(),
           AddTask(),
           DoneTasks(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        elevation: 10,
         onTap: changePage,
         backgroundColor: Colors.grey[200],
         currentIndex: _selectedIndex,
