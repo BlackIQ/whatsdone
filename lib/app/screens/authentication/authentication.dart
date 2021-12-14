@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:whatsdone/app/services/authenticarion.dart';
 
 class Authentication extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class Authentication extends StatefulWidget {
 }
 
 class _AuthenticationState extends State<Authentication> {
+  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,38 +44,33 @@ class _AuthenticationState extends State<Authentication> {
                 fontSize: 50,
               ),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 40),
             Container(
               height: 50,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.deepPurple,
-                ),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
-                ),
-              ),
-              child: FlatButton(
-                onPressed: () {},
+              child: ElevatedButton(
+                onPressed: () async {
+                  dynamic result = await _auth.googleLogin();
+                  if (result.runtimeType == List) {
+                    print(result[1]);
+                  }
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     FaIcon(
                       FontAwesomeIcons.google,
-                      color: Colors.deepPurple,
                     ),
                     Text(
                       'Sign in with Google',
                       style: TextStyle(
                         fontSize: 20,
-                        color: Colors.deepPurple,
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             Text(
               'You should sign in to continue to the app',
               style: TextStyle(
