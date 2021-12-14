@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:whatsdone/app/index.dart';
+import 'package:whatsdone/app/screens/home/index.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WhatsDone(),
+      home: Home(),
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
         textTheme: GoogleFonts.patrickHandTextTheme(),
