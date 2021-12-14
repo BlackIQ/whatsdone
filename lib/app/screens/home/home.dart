@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:whatsdone/app/models/user.dart';
 import 'package:whatsdone/app/screens/home/routes/developer.dart';
 import 'package:whatsdone/app/screens/home/routes/trash.dart';
 import 'package:whatsdone/app/screens/home/tabs/add.dart';
@@ -33,6 +35,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final User user = Provider.of<User>(context);
+
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -41,29 +45,43 @@ class _HomeState extends State<Home> {
               decoration: BoxDecoration(
                 color: Colors.deepPurple,
                 image: DecorationImage(
+                  colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.4),
+                    BlendMode.dstATop,
+                  ),
                   image: NetworkImage(
-                      'https://cdn.wallpapersafari.com/64/43/0n5pUs.jpg'),
+                    'https://cdn.wallpapersafari.com/64/43/0n5pUs.jpg',
+                  ),
                   fit: BoxFit.cover,
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Whats done!?',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
+              child: Row(
+                children: <Widget>[
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(user.profile),
+                    radius: 25,
                   ),
-                  Text(
-                    'Track your TODOs with me!',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                    ),
+                  SizedBox(width: 20),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Welcome',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                        ),
+                      ),
+                      Text(
+                        user.name,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
