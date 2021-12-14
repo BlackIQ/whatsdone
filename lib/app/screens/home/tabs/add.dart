@@ -1,4 +1,3 @@
-import 'package:whatsdone/app/data/data.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:math';
@@ -14,18 +13,6 @@ class _AddTaskState extends State<AddTask> {
   void _submit() async {
     var ontime = DateFormat('y/MMM/dd H:m:s').format(DateTime.now());
     int id = Random().nextInt(999);
-
-    await DatabaseHelper.instance.add(
-      Tasks(
-        name: _tasktxt.text,
-        id: id,
-        date: ontime,
-      ),
-      'home',
-    );
-    setState(() {
-      _tasktxt.clear();
-    });
   }
 
   @override
