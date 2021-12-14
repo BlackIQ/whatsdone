@@ -26,37 +26,59 @@ class _TrashState extends State<Trash> {
           style: GoogleFonts.patrickHand(),
         ),
       ),
-      body: ListView.separated(
-        separatorBuilder: (context, index) {
-          return Divider(color: Colors.red);
-        },
-        itemCount: x.length,
-        itemBuilder: (context, index) {
-          return Dismissible(
-            key: UniqueKey(),
-            child: ListTile(
-              subtitle: Text(x[index]['date']),
-              title: Text(
-                x[index]['name'],
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.red,
-                ),
+      body: x.isEmpty
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Trash is empty',
+                    style: TextStyle(
+                      fontSize: 35,
+                      color: Colors.red,
+                    ),
+                  ),
+                  Text(
+                    'Well done',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
               ),
+            )
+          : ListView.separated(
+              separatorBuilder: (context, index) {
+                return Divider(color: Colors.red);
+              },
+              itemCount: x.length,
+              itemBuilder: (context, index) {
+                return Dismissible(
+                  key: UniqueKey(),
+                  child: ListTile(
+                    subtitle: Text(x[index]['date']),
+                    title: Text(
+                      x[index]['name'],
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                  onDismissed: (direction) {
+                    print('Delete');
+                  },
+                  background: Container(
+                    color: Colors.red,
+                    child: Icon(
+                      Icons.delete,
+                      color: Colors.white,
+                    ),
+                  ),
+                );
+              },
             ),
-            onDismissed: (direction) {
-              print('Delete');
-            },
-            background: Container(
-              color: Colors.red,
-              child: Icon(
-                Icons.delete,
-                color: Colors.white,
-              ),
-            ),
-          );
-        },
-      ),
     );
   }
 }

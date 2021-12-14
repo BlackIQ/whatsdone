@@ -16,47 +16,69 @@ class _DoneTasksState extends State<DoneTasks> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      separatorBuilder: (context, index) {
-        return Divider(color: Colors.deepPurple);
-      },
-      itemCount: x.length,
-      itemBuilder: (context, index) {
-        return Dismissible(
-          key: UniqueKey(),
-          child: ListTile(
-            subtitle: Text(x[index]['date']),
-            title: Text(
-              x[index]['name'],
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.deepPurple,
-              ),
+    return x.isEmpty
+        ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'You did everything',
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.green,
+                  ),
+                ),
+                Text(
+                  'Congratulations',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.deepPurple,
+                  ),
+                ),
+              ],
             ),
-          ),
-          onDismissed: (direction) {
-            if (direction == DismissDirection.endToStart) {
-              print('Go to trash');
-            } else {
-              print('Go to not');
-            }
-          },
-          background: Container(
-            color: Colors.blueAccent,
-            child: Icon(
-              Icons.timer,
-              color: Colors.white,
-            ),
-          ),
-          secondaryBackground: Container(
-            color: Colors.red,
-            child: Icon(
-              Icons.delete,
-              color: Colors.white,
-            ),
-          ),
-        );
-      },
-    );
+          )
+        : ListView.separated(
+            separatorBuilder: (context, index) {
+              return Divider(color: Colors.deepPurple);
+            },
+            itemCount: x.length,
+            itemBuilder: (context, index) {
+              return Dismissible(
+                key: UniqueKey(),
+                child: ListTile(
+                  subtitle: Text(x[index]['date']),
+                  title: Text(
+                    x[index]['name'],
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                ),
+                onDismissed: (direction) {
+                  if (direction == DismissDirection.endToStart) {
+                    print('Go to trash');
+                  } else {
+                    print('Go to not');
+                  }
+                },
+                background: Container(
+                  color: Colors.blueAccent,
+                  child: Icon(
+                    Icons.timer,
+                    color: Colors.white,
+                  ),
+                ),
+                secondaryBackground: Container(
+                  color: Colors.red,
+                  child: Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                  ),
+                ),
+              );
+            },
+          );
   }
 }
