@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:whatsdone/app/drawer/drawer_widget.dart';
-import 'package:whatsdone/app/navigator/button_navigator.dart';
-import 'package:whatsdone/app/pages/add/add.dart';
-import 'package:whatsdone/app/pages/done/done.dart';
-import 'package:whatsdone/app/pages/home/home.dart';
+import 'package:whatsdone/app/screens/home/tabs/add.dart';
+import 'package:whatsdone/app/screens/home/tabs/done.dart';
+import 'package:whatsdone/app/screens/home/tabs/home.dart';
 
 class WhatsDone extends StatefulWidget {
   @override
@@ -44,9 +43,18 @@ class _WhatsDoneState extends State<WhatsDone> {
           DoneTasks(),
         ],
       ),
-      bottomNavigationBar: BottomNavigatorWidget(
-        change: changePage,
-        selected: _selectedIndex,
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 10,
+        onTap: changePage,
+        backgroundColor: Colors.grey[200],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.deepPurple,
+        unselectedItemColor: Colors.grey,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add'),
+          BottomNavigationBarItem(icon: Icon(Icons.check), label: 'Done'),
+        ],
       ),
     );
   }
