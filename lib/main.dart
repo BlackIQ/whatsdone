@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:whatsdone/app/screens/home/home.dart';
 import 'package:whatsdone/app/screens/landing.dart';
 
 void main() {
