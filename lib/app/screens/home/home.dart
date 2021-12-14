@@ -34,49 +34,44 @@ class _HomeState extends State<Home> {
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(15),
-              child: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Image.asset(
-                    'asset/logo.png',
-                    height: 50,
-                    width: 50,
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.deepPurple,
+                image: DecorationImage(
+                  image: NetworkImage('https://cdn.wallpapersafari.com/64/43/0n5pUs.jpg'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Whats done!?',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  SizedBox(width: 15),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Whats Done!?',
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.deepPurple,
-                        ),
-                      ),
-                      Text(
-                        'Track your TODOs with me!',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.deepPurple,
-                        ),
-                      ),
-                    ],
+                  Text(
+                    'Track your TODOs with me!',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                    ),
                   ),
                 ],
               ),
             ),
-            Divider(color: Colors.deepPurple),
             DrawerItems(
               text: 'App',
-              icon: Icons.android,
+              icon: FontAwesomeIcons.android,
               onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Home())),
             ),
             DrawerItems(
               text: 'Trash',
-              icon: Icons.delete,
+              icon: FontAwesomeIcons.trash,
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   fullscreenDialog: true,
@@ -86,7 +81,7 @@ class _HomeState extends State<Home> {
             ),
             DrawerItems(
               text: 'About app',
-              icon: Icons.perm_device_information,
+              icon: FontAwesomeIcons.mobileAlt,
               onTap: () => showAboutDialog(
                 context: context,
                 applicationIcon: Image.asset(
@@ -97,27 +92,16 @@ class _HomeState extends State<Home> {
                 applicationVersion: '1.0.0',
                 applicationName: 'Whats Done!?',
                 applicationLegalese: 'Track your TODOs with Whats Done.',
-                children: [
-                  SizedBox(height: 20),
-                  Divider(color: Colors.deepPurple),
-                  Text(
-                    'Who is my developer!?',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.deepPurple,
-                    ),
-                  ),
-                  DrawerItems(
-                    text: 'Development',
-                    icon: FontAwesomeIcons.laptop,
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        fullscreenDialog: true,
-                        builder: (context) => Developer(),
-                      ),
-                    ),
-                  ),
-                ],
+              ),
+            ),
+            DrawerItems(
+              text: 'Development',
+              icon: FontAwesomeIcons.tools,
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  fullscreenDialog: true,
+                  builder: (context) => Developer(),
+                ),
               ),
             ),
             DrawerItems(
