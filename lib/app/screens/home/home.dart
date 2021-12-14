@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:whatsdone/app/screens/home/routes/developer.dart';
 import 'package:whatsdone/app/screens/home/routes/trash.dart';
@@ -106,8 +107,8 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   DrawerItems(
-                    text: 'About developer',
-                    icon: Icons.laptop_mac,
+                    text: 'Development',
+                    icon: FontAwesomeIcons.laptop,
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(
                         fullscreenDialog: true,
@@ -115,25 +116,12 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 15),
-                  Text(
-                    'Also check my website!',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.deepPurple,
-                    ),
-                  ),
-                  DrawerItems(
-                    text: 'Open whatsdone.blackiq.ir',
-                    icon: Icons.cloud,
-                    onTap: () {},
-                  ),
                 ],
               ),
             ),
             DrawerItems(
               text: 'Exit',
-              icon: Icons.exit_to_app,
+              icon: FontAwesomeIcons.signOutAlt,
               onTap: () => exit(0),
             ),
           ],
@@ -163,9 +151,9 @@ class _HomeState extends State<Home> {
         selectedItemColor: Colors.deepPurple,
         unselectedItemColor: Colors.grey,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add'),
-          BottomNavigationBarItem(icon: Icon(Icons.check), label: 'Done'),
+          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.plus), label: 'Add'),
+          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.check), label: 'Done'),
         ],
       ),
     );
