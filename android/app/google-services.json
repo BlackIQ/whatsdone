@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1000368315925",
+    "project_id": "whatsdone-59375",
+    "storage_bucket": "whatsdone-59375.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000368315925:android:c6338eaf6e2aa09975381c",
+        "android_client_info": {
+          "package_name": "com.blackiq.whatsdone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1000368315925-lb3b4j8p3sjair21l3s0j82bqauiau9h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blackiq.whatsdone",
+            "certificate_hash": "cd8ed2d444f3302843ebf1491640844a645932f5"
+          }
+        },
+        {
+          "client_id": "1000368315925-9i23q5n9rbf1ho7fp0bgsrbtcsl0442p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG9-y-YN0MVeQV8zOTsdT4BcReCdAaRn0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1000368315925-9i23q5n9rbf1ho7fp0bgsrbtcsl0442p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
