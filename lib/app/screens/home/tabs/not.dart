@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:whatsdone/app/data/data.dart';
 
-class Home extends StatefulWidget {
+class NotDone extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _NotDoneState createState() => _NotDoneState();
 }
 
-class _HomeState extends State<Home> {
+class _NotDoneState extends State<NotDone> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Tasks>>(
