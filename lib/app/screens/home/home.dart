@@ -6,6 +6,7 @@ import 'package:whatsdone/app/screens/home/routes/trash.dart';
 import 'package:whatsdone/app/screens/home/tabs/add.dart';
 import 'package:whatsdone/app/screens/home/tabs/done.dart';
 import 'package:whatsdone/app/screens/home/tabs/not.dart';
+import 'package:whatsdone/app/services/authenticarion.dart';
 import 'dart:io';
 
 import 'package:whatsdone/app/widgets/drawer/drawer_item.dart';
@@ -16,6 +17,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final AuthService _auth = AuthService();
 
   int _selectedIndex = 0;
   PageController pageController = PageController();
@@ -25,7 +27,8 @@ class _HomeState extends State<Home> {
       _selectedIndex = index;
     });
     // pageController.jumpToPage(index);
-    pageController.animateToPage(index, duration: Duration(milliseconds: 1000), curve: Curves.ease);
+    pageController.animateToPage(index,
+        duration: Duration(milliseconds: 1000), curve: Curves.ease);
   }
 
   @override
@@ -38,7 +41,8 @@ class _HomeState extends State<Home> {
               decoration: BoxDecoration(
                 color: Colors.deepPurple,
                 image: DecorationImage(
-                  image: NetworkImage('https://cdn.wallpapersafari.com/64/43/0n5pUs.jpg'),
+                  image: NetworkImage(
+                      'https://cdn.wallpapersafari.com/64/43/0n5pUs.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -67,7 +71,8 @@ class _HomeState extends State<Home> {
             DrawerItems(
               text: 'App',
               icon: FontAwesomeIcons.android,
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Home())),
+              onTap: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Home())),
             ),
             DrawerItems(
               text: 'Trash',
@@ -118,6 +123,20 @@ class _HomeState extends State<Home> {
           'Whats Done!?',
           style: GoogleFonts.patrickHand(),
         ),
+        actions: [
+          FlatButton(
+            onPressed: () async {
+              return _auth.signOut();
+            },
+            child: Text(
+              'Logout',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+              ),
+            ),
+          ),
+        ],
         centerTitle: true,
       ),
       body: PageView(
@@ -135,9 +154,12 @@ class _HomeState extends State<Home> {
         selectedItemColor: Colors.deepPurple,
         unselectedItemColor: Colors.grey,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.plus), label: 'Add'),
-          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.check), label: 'Done'),
+          BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.plus), label: 'Add'),
+          BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.check), label: 'Done'),
         ],
       ),
     );
