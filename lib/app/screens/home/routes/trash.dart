@@ -35,21 +35,12 @@ class _TrashState extends State<Trash> {
           return Dismissible(
             key: UniqueKey(),
             child: ListTile(
-              title: Container(
-                margin: EdgeInsets.all(5),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(x[index]['name']),
-                    SizedBox(height: 5),
-                    Text(
-                      x[index]['date'],
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ],
+              subtitle: Text(x[index]['date']),
+              title: Text(
+                x[index]['name'],
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.red,
                 ),
               ),
             ),
