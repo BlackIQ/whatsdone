@@ -90,10 +90,13 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                   SizedBox(height: 10),
-                  Text(user.email, style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                  ),),
+                  Text(
+                    user.email,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -184,11 +187,23 @@ class _HomeState extends State<Home> {
         unselectedItemColor: Colors.grey,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.home), label: 'Home'),
+            icon: FaIcon(
+              FontAwesomeIcons.home,
+            ),
+            label: 'Home',
+          ),
           BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.plus), label: 'Add'),
+            icon: FaIcon(
+              FontAwesomeIcons.plus,
+            ),
+            label: 'Add',
+          ),
           BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.check), label: 'Done'),
+            icon: FaIcon(
+              FontAwesomeIcons.check,
+            ),
+            label: 'Done',
+          ),
         ],
       ),
     );
