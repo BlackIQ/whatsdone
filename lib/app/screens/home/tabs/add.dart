@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:math';
 
+import 'package:whatsdone/app/services/database.dart';
+
 class AddTask extends StatefulWidget {
   @override
   _AddTaskState createState() => _AddTaskState();
@@ -36,6 +38,15 @@ class _AddTaskState extends State<AddTask> {
               ElevatedButton(
                 onPressed: _submit,
                 child: Text('Add this task'),
+              ),
+              SizedBox(height: 50),
+              ElevatedButton(
+                onPressed: () async {
+                  final x = await DatabaseService().getTODOs('amir');
+
+                  print(x);
+                },
+                child: Text('Tap'),
               ),
             ],
           ),
