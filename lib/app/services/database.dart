@@ -81,24 +81,24 @@ class DatabaseHelper {
     return homeList;
   }
 
-  Future<int> add(Tasks task, String table) async {
+  Future<int> add(Tasks task) async {
     Database db = await instance.database;
-    return await db.insert(table, task.toMap());
+    return await db.insert('tasks', task.toMap());
   }
 
-  Future<int> remove(int id, String table) async {
+  Future<int> remove(int id) async {
     Database db = await instance.database;
     return await db.delete(
-      table,
+      'tasks',
       where: 'id = ?',
       whereArgs: [id],
     );
   }
 
-  Future<int> update(Tasks task, String table) async {
+  Future<int> update(Tasks task) async {
     Database db = await instance.database;
     return await db.update(
-      table,
+      'tasks',
       task.toMap(),
       where: 'id = ?',
       whereArgs: [task.id],
