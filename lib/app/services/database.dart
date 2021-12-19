@@ -4,23 +4,29 @@ import 'package:path/path.dart';
 import 'dart:io';
 
 class Tasks {
-  Tasks(
-      {this.row,
-        required this.name,
-        required this.id,
-        required this.date});
+  Tasks({
+    this.row,
+    this.name,
+    this.id,
+    this.status,
+    this.date,
+  });
 
-  final int? row;
-  final String? name;
-  final int? id;
-  final String? date;
+  final int row;
+  final String name;
+  final int id;
+  final String status;
+  final String date;
 
-  factory Tasks.fromMap(Map<String, dynamic> json) => Tasks(
-    row: json['row'],
-    name: json['name'],
-    id: json['id'],
-    date: json['date'],
-  );
+  factory Tasks.fromMap(Map<String, dynamic> json) {
+    return Tasks(
+      row: json['row'],
+      name: json['name'],
+      id: json['id'],
+      status: json['status'],
+      date: json['date'],
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return {
@@ -37,7 +43,8 @@ class DatabaseHelper {
 
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
 
-  static Database? _database;
+  static Database _database;
+
   Future<Database> get database async => _database ??= await _initDatabase();
 
   Future<Database> _initDatabase() async {
@@ -52,74 +59,50 @@ class DatabaseHelper {
 
   Future _onCreate(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE home(
+      CREATE TABLE tasks(
         row INTEGER PRIMARY KEY,
         name TEXT,
         id INTEGER,
-        date TEXT
-      )
-    ''');
-
-    await db.execute('''
-      CREATE TABLE done(
-        row INTEGER PRIMARY KEY,
-        name TEXT,
-        id INTEGER,
-        date TEXT
-      )
-    ''');
-
-    await db.execute('''
-      CREATE TABLE trash(
-        row INTEGER PRIMARY KEY,
-        name TEXT,
-        id INTEGER,
+        status TEXT,
         date TEXT
       )
     ''');
   }
 
-  Future<List<Tasks>> getHome() async {
+  Future<List<Tasks>> getTasks(String status) async {
     Database db = await instance.database;
-    var home = await db.query('home');
-    List<Tasks> homeList = home.isNotEmpty
-        ? home.map((c) => Tasks.fromMap(c)).toList()
-        : [];
+    var home = await db.query(
+      'tasks',
+      where: 'status = ?',
+      whereArgs: [status],
+    );
+    List<Tasks> homeList =
+        home.isNotEmpty ? home.map((c) => Tasks.fromMap(c)).toList() : [];
     return homeList;
   }
 
-  Future<List<Tasks>> getDone() async {
+  Future<int> add(Tasks task, String table) async {
     Database db = await instance.database;
-    var done = await db.query('done');
-    List<Tasks> doneList = done.isNotEmpty
-        ? done.map((c) => Tasks.fromMap(c)).toList()
-        : [];
-    return doneList;
-  }
-
-  Future<List<Tasks>> getTrash() async {
-    Database db = await instance.database;
-    var trash = await db.query('trash');
-    List<Tasks> trashList = trash.isNotEmpty
-        ? trash.map((c) => Tasks.fromMap(c)).toList()
-        : [];
-    return trashList;
-  }
-
-  Future<int> add(Tasks grocery, String table) async {
-    Database db = await instance.database;
-    return await db.insert(table, grocery.toMap());
+    return await db.insert(table, task.toMap());
   }
 
   Future<int> remove(int id, String table) async {
     Database db = await instance.database;
-    return await db.delete(table, where: 'id = ?', whereArgs: [id]);
+    return await db.delete(
+      table,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
   }
 
-  Future<int> update(Tasks grocery, String table) async {
+  Future<int> update(Tasks task, String table) async {
     Database db = await instance.database;
-    return await db.update(table, grocery.toMap(),
-        where: 'id = ?', whereArgs: [grocery.id]);
+    return await db.update(
+      table,
+      task.toMap(),
+      where: 'id = ?',
+      whereArgs: [task.id],
+    );
   }
 }
 
