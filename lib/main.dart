@@ -5,7 +5,10 @@ import 'package:whatsdone/app/models/user.dart';
 import 'package:whatsdone/app/screens/landing.dart';
 import 'package:whatsdone/app/services/authenticarion.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
