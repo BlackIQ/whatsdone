@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:whatsdone/app/services/database.dart';
+import 'package:whatsdone/app/models/task.dart';
 
 class Trash extends StatefulWidget {
   @override
