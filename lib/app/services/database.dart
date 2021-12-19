@@ -15,7 +15,7 @@ class DatabaseHelper {
 
   Future<Database> _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, 'wd3.db');
+    String path = join(documentsDirectory.path, 'wd4.db');
     return await openDatabase(
       path,
       version: 1,
@@ -25,6 +25,7 @@ class DatabaseHelper {
 
   Future _onCreate(Database db, int version) async {
     await db.execute('''
+      DROP TABLE tasks;
       CREATE TABLE tasks(
         row INTEGER PRIMARY KEY,
         name TEXT,
