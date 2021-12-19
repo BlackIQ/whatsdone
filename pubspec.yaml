@@ -18,7 +18,6 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   google_sign_in: ^4.5.9
   firebase_auth: ^0.14.0+5
-  cloud_firestore: ^0.12.9+4
   provider: ^4.3.3
 
 flutter_icons:
