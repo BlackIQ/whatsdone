@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:whatsdone/app/services/database.dart';
 
 class Trash extends StatefulWidget {
   @override
@@ -7,13 +8,6 @@ class Trash extends StatefulWidget {
 }
 
 class _TrashState extends State<Trash> {
-  List<Map> x = [
-    {
-      'name': 'amir',
-      'date': 'amir',
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,59 +20,81 @@ class _TrashState extends State<Trash> {
           style: GoogleFonts.patrickHand(),
         ),
       ),
-      body: x.isEmpty
-          ? Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Trash is empty',
-                    style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.red,
-                    ),
-                  ),
-                  Text(
-                    'Well done',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
+      body: FutureBuilder<List<Tasks>>(
+        future: DatabaseHelper.instance.getTasks('home'),
+        builder: (BuildContext context, AsyncSnapshot<List<Tasks>> snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(
+                color: Colors.deepPurple,
               ),
-            )
-          : ListView.separated(
-              separatorBuilder: (context, index) {
-                return Divider(color: Colors.red);
-              },
-              itemCount: x.length,
-              itemBuilder: (context, index) {
-                return Dismissible(
-                  key: UniqueKey(),
-                  child: ListTile(
-                    subtitle: Text(x[index]['date']),
-                    title: Text(
-                      x[index]['name'],
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.red,
+            );
+          }
+          return snapshot.data.isEmpty
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Trash is empty',
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Colors.red,
+                        ),
                       ),
-                    ),
+                      Text(
+                        'Well done',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
                   ),
-                  onDismissed: (direction) {
-                    print('Delete');
-                  },
-                  background: Container(
-                    color: Colors.red,
-                    child: Icon(
-                      Icons.delete,
-                      color: Colors.white,
-                    ),
-                  ),
+                )
+              : ListView(
+                  children: snapshot.data.map((task) {
+                    return Dismissible(
+                      key: UniqueKey(),
+                      child: ListTile(
+                        title: Text(
+                          task.name,
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.deepPurple,
+                          ),
+                        ),
+                        subtitle: Text(
+                          task.date,
+                          style: TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                      onDismissed: (direction) {
+                        setState(() {
+                          DatabaseHelper.instance.update(
+                            Tasks(
+                              id: task.id,
+                              date: task.date,
+                              name: task.name,
+                              status: 'over',
+                            ),
+                          );
+                        });
+                      },
+                      background: Container(
+                        color: Colors.red,
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 );
-              },
-            ),
+        },
+      ),
     );
   }
 }
