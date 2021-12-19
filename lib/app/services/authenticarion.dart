@@ -10,7 +10,6 @@ class AuthService {
   // Convert firebase user
   User _userFromFirebaseUser(FirebaseUser user) {
     if (user != null) {
-      print('Ok');
       return User(
         uid: user.uid,
         profile: user.photoUrl,
@@ -19,7 +18,6 @@ class AuthService {
         phone: user.phoneNumber,
       );
     } else {
-      print('Error');
       return null;
     }
   }
@@ -35,7 +33,7 @@ class AuthService {
       GoogleSignInAccount googleAccount = await _google.signIn();
       if (googleAccount != null) {
         GoogleSignInAuthentication googleAuth =
-        await googleAccount.authentication;
+            await googleAccount.authentication;
 
         if (googleAuth.idToken != null && googleAuth.accessToken != null) {
           AuthResult result = await _auth.signInWithCredential(
@@ -48,7 +46,6 @@ class AuthService {
         }
       }
     } catch (e) {
-      print(e.toString());
       return [
         null,
         e.toString(),
