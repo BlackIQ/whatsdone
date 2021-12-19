@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:math';
-
 import 'package:whatsdone/app/services/database.dart';
+import 'package:whatsdone/app/models/task.dart';
 
 class AddTask extends StatefulWidget {
   @override
@@ -11,23 +11,6 @@ class AddTask extends StatefulWidget {
 
 class _AddTaskState extends State<AddTask> {
   final TextEditingController _tasktxt = TextEditingController();
-
-  void _submit() async {
-    var ontime = DateFormat('y/MMM/dd H:m:s').format(DateTime.now());
-    int id = Random().nextInt(999);
-
-    await DatabaseHelper.instance.add(
-      Tasks(
-        name: _tasktxt.text,
-        id: id,
-        date: ontime,
-        status: 'home',
-      ),
-    );
-    setState(() {
-      _tasktxt.clear();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +31,19 @@ class _AddTaskState extends State<AddTask> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _submit,
+                onPressed: () async {
+                  await DatabaseHelper.instance.add(
+                    Tasks(
+                      name: _tasktxt.text,
+                      id: Random().nextInt(999),
+                      date: DateFormat('y/MMM/dd H:m:s').format(DateTime.now()),
+                      status: 'home',
+                    ),
+                  );
+                  setState(() {
+                    _tasktxt.clear();
+                  });
+                },
                 child: Text('Add this task'),
               ),
             ],
