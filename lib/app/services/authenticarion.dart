@@ -10,6 +10,7 @@ class AuthService {
   // Convert firebase user
   User _userFromFirebaseUser(FirebaseUser user) {
     if (user != null) {
+      print('Ok');
       return User(
         uid: user.uid,
         profile: user.photoUrl,
@@ -18,6 +19,7 @@ class AuthService {
         phone: user.phoneNumber,
       );
     } else {
+      print('Error');
       return null;
     }
   }
@@ -46,6 +48,7 @@ class AuthService {
         }
       }
     } catch (e) {
+      print(e.toString());
       return [
         null,
         e.toString(),
