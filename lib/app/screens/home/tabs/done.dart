@@ -10,9 +10,9 @@ class DoneTasks extends StatefulWidget {
 class _DoneTasksState extends State<DoneTasks> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Tasks>>(
-      future: DatabaseHelper.instance.getTasks('home'),
-      builder: (BuildContext context, AsyncSnapshot<List<Tasks>> snapshot) {
+    return FutureBuilder<List<Task>>(
+      future: DatabaseService.instance.selectTasks('home'),
+      builder: (BuildContext context, AsyncSnapshot<List<Task>> snapshot) {
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(
@@ -64,8 +64,9 @@ class _DoneTasksState extends State<DoneTasks> {
                     onDismissed: (direction) {
                       if (direction == DismissDirection.endToStart) {
                         setState(() {
-                          DatabaseHelper.instance.update(
-                            Tasks(
+                          DatabaseService.instance.updateTask(
+                            Task(
+                              row: task.row,
                               id: task.id,
                               date: task.date,
                               name: task.name,
@@ -75,8 +76,9 @@ class _DoneTasksState extends State<DoneTasks> {
                         });
                       } else {
                         setState(() {
-                          DatabaseHelper.instance.update(
-                            Tasks(
+                          DatabaseService.instance.updateTask(
+                            Task(
+                              row: task.row,
                               id: task.id,
                               date: task.date,
                               name: task.name,
