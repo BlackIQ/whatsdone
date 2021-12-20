@@ -1,5 +1,5 @@
-class Tasks {
-  Tasks({
+class Task {
+  Task({
     this.row,
     this.name,
     this.id,
@@ -13,8 +13,8 @@ class Tasks {
   final String status;
   final String date;
 
-  factory Tasks.fromMap(Map<String, dynamic> json) {
-    return Tasks(
+  factory Task.fromMap(Map<String, dynamic> json) {
+    return Task(
       row: json['row'],
       name: json['name'],
       id: json['id'],
