@@ -1,31 +1,35 @@
-import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'dart:io';
 import 'package:whatsdone/app/models/task.dart';
 
-class DatabaseHelper {
-  DatabaseHelper._privateConstructor();
-
-  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
-
+class DatabaseService {
+  static DatabaseService _databaseService;
   static Database _database;
 
-  Future<Database> get database async => _database = await _initDatabase();
+  DatabaseService._createInstance();
 
-  Future<Database> _initDatabase() async {
-    Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, 'wd4.db');
-    return await openDatabase(
-      path,
-      version: 1,
-      onCreate: _onCreate,
-    );
+  static final DatabaseService instance = DatabaseService._createInstance();
+
+  factory DatabaseService() {
+    if (_databaseService == null) {
+      _databaseService = DatabaseService._createInstance();
+    }
+    return _databaseService;
   }
 
-  Future _onCreate(Database db, int version) async {
-    await db.execute('''
-      DROP TABLE tasks;
+  Future<Database> get database async {
+    if (database == null) {
+      _database = await initDatabase();
+    }
+    return _database;
+  }
+
+  Future<Database> initDatabase() async {
+    final database = openDatabase(
+      join(await getDatabasesPath(), 'newd.db'),
+      version: 1,
+      onCreate: (db, version) {
+        return db.execute('''
       CREATE TABLE tasks(
         row INTEGER PRIMARY KEY,
         name TEXT,
@@ -34,41 +38,46 @@ class DatabaseHelper {
         date TEXT
       )
     ''');
+      },
+    );
+    return database;
   }
 
-  Future<List<Tasks>> getTasks(String status) async {
-    Database db = await instance.database;
-    var home = await db.query(
+  Future<List<Task>> selectTasks(String status) async {
+    final db = await database;
+    final List<Map<String, dynamic>> tasks = await db.query(
       'tasks',
       where: 'status = ?',
       whereArgs: [status],
     );
-    List<Tasks> homeList =
-        home.isNotEmpty ? home.map((c) => Tasks.fromMap(c)).toList() : [];
-    return homeList;
+    return tasks.map((i) => Task.fromMap(i));
   }
 
-  Future<int> add(Tasks task) async {
-    Database db = await instance.database;
-    return await db.insert('tasks', task.toMap());
-  }
-
-  Future<int> remove(int id) async {
-    Database db = await instance.database;
-    return await db.delete(
+  Future<void> addTask(Task task) async {
+    final db = await database;
+    await db.insert(
       'tasks',
-      where: 'id = ?',
-      whereArgs: [id],
+      task.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 
-  Future<int> update(Tasks task) async {
-    Database db = await instance.database;
-    return await db.update(
+  Future<void> updateTask(Task task) async {
+    final db = await database;
+    await db.update(
       'tasks',
       task.toMap(),
       where: 'id = ?',
       whereArgs: [task.id],
+    );
+  }
+
+  Future<void> deleteTask(int id) async {
+    final db = await database;
+    await db.delete(
+      'tasks',
+      where: 'id = ?',
+      whereArgs: [id],
     );
   }
 }
