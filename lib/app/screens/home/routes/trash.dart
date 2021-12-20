@@ -21,9 +21,9 @@ class _TrashState extends State<Trash> {
           style: GoogleFonts.patrickHand(),
         ),
       ),
-      body: FutureBuilder<List<Tasks>>(
-        future: DatabaseHelper.instance.getTasks('home'),
-        builder: (BuildContext context, AsyncSnapshot<List<Tasks>> snapshot) {
+      body: FutureBuilder<List<Task>>(
+        future: DatabaseService.instance.selectTasks('home'),
+        builder: (BuildContext context, AsyncSnapshot<List<Task>> snapshot) {
           if (!snapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(
@@ -74,14 +74,7 @@ class _TrashState extends State<Trash> {
                       ),
                       onDismissed: (direction) {
                         setState(() {
-                          DatabaseHelper.instance.update(
-                            Tasks(
-                              id: task.id,
-                              date: task.date,
-                              name: task.name,
-                              status: 'over',
-                            ),
-                          );
+                          DatabaseService.instance.deleteTask(task.id);
                         });
                       },
                       background: Container(
