@@ -18,7 +18,7 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   firebase_auth: ^0.14.0+5
   provider: ^4.3.3
-  sqflite: ^2.0.1
+  sqflite: ^2.0.0+4
   google_sign_in: ^4.5.9
   firebase_core: ^0.4.2+2
 
