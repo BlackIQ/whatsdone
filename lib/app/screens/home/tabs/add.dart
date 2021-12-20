@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:math';
-import 'package:whatsdone/app/services/database.dart';
 import 'package:whatsdone/app/models/task.dart';
+import 'package:whatsdone/app/services/database.dart';
 
 class AddTask extends StatefulWidget {
   @override
@@ -31,9 +31,9 @@ class _AddTaskState extends State<AddTask> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () async {
-                  await DatabaseHelper.instance.add(
-                    Tasks(
+                onPressed: () {
+                  DatabaseService.instance.addTask(
+                    Task(
                       name: _tasktxt.text,
                       id: Random().nextInt(999),
                       date: DateFormat('y/MMM/dd H:m:s').format(DateTime.now()),
