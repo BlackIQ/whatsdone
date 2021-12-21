@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:whatsdone/app/screens/home/routes/task.dart';
 import 'package:whatsdone/app/services/database.dart';
 import 'package:whatsdone/app/models/task.dart';
 import 'package:whatsdone/app/widgets/toast.dart';
@@ -60,6 +61,13 @@ class _TrashState extends State<Trash> {
                       return Dismissible(
                         key: UniqueKey(),
                         child: ListTile(
+                          onLongPress: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => OpenTask(task: task),
+                              ),
+                            );
+                          },
                           title: Text(
                             task.name,
                             style: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsdone/app/screens/home/routes/task.dart';
 import 'package:whatsdone/app/services/database.dart';
 import 'package:whatsdone/app/models/task.dart';
 import 'package:whatsdone/app/widgets/toast.dart';
@@ -49,6 +50,13 @@ class _NotDoneState extends State<NotDone> {
                     return Dismissible(
                       key: UniqueKey(),
                       child: ListTile(
+                        onLongPress: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => OpenTask(task: task),
+                            ),
+                          );
+                        },
                         title: Text(
                           task.name,
                           style: TextStyle(
@@ -72,6 +80,7 @@ class _NotDoneState extends State<NotDone> {
                                 id: task.id,
                                 date: task.date,
                                 name: task.name,
+                                note: task.note,
                                 status: 'trash',
                               ),
                             );
@@ -85,6 +94,7 @@ class _NotDoneState extends State<NotDone> {
                                 id: task.id,
                                 date: task.date,
                                 name: task.name,
+                                note: task.note,
                                 status: 'done',
                               ),
                             );
