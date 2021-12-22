@@ -21,6 +21,7 @@ dependencies:
   sqflite: ^2.0.0+4
   google_sign_in: ^4.5.9
   firebase_core: ^0.4.2+2
+  fluttertoast: ^8.0.8
 
 flutter_icons:
   android: true
