@@ -12,7 +12,8 @@ class AddTask extends StatefulWidget {
 class _AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _tasktxt = TextEditingController();
+    final TextEditingController _taskName = TextEditingController();
+    final TextEditingController _taskNote = TextEditingController();
 
     return SingleChildScrollView(
       padding: EdgeInsets.all(20),
@@ -23,19 +24,28 @@ class _AddTaskState extends State<AddTask> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               TextField(
-                controller: _tasktxt,
+                controller: _taskName,
                 decoration: InputDecoration(
                   labelText: 'Task name',
-                  hintText: 'Do that . . .',
+                  hintText: 'Do that',
+                ),
+              ),
+              SizedBox(height: 10),
+              TextField(
+                controller: _taskNote,
+                decoration: InputDecoration(
+                  labelText: 'Task note',
+                  hintText: 'Details of doing that',
                 ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
-                  if (_tasktxt.text.isNotEmpty) {
+                  if (_taskName.text.isNotEmpty && _taskNote.text.isNotEmpty) {
                     await DatabaseService.instance.add(
                       Task(
-                        name: _tasktxt.text,
+                        name: _taskName.text,
+                        note: _taskNote.text,
                         id: Random().nextInt(999),
                         date: DateFormat('y/MMM/dd H:m:s').format(
                           DateTime.now(),
@@ -44,7 +54,8 @@ class _AddTaskState extends State<AddTask> {
                       ),
                     );
                     setState(() {
-                      _tasktxt.clear();
+                      _taskName.clear();
+                      _taskNote.clear();
                     });
                   } else {
                     return showDialog(
@@ -57,7 +68,7 @@ class _AddTaskState extends State<AddTask> {
                           ),
                         ),
                         content: Text(
-                          'By submitting a null task name, there is no chance to insert a null task!',
+                          'By submitting a null field or both null fields, there is no chance to insert anything!',
                         ),
                         actions: [
                           TextButton(

@@ -48,6 +48,78 @@ class _DoneTasksState extends State<DoneTasks> {
                     return Dismissible(
                       key: UniqueKey(),
                       child: ListTile(
+                        onTap: () {
+                          return showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text(
+                                task.name,
+                                style: TextStyle(
+                                  color: Colors.deepPurple,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              content: Text(
+                                task.name,
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    setState(() {
+                                      DatabaseService.instance.update(
+                                        Task(
+                                          row: task.row,
+                                          id: task.id,
+                                          date: task.date,
+                                          name: task.name,
+                                          status: 'trash',
+                                        ),
+                                      );
+                                    });
+                                  },
+                                  child: Text(
+                                    'Delete',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    setState(() {
+                                      DatabaseService.instance.update(
+                                        Task(
+                                          row: task.row,
+                                          id: task.id,
+                                          date: task.date,
+                                          name: task.name,
+                                          status: 'home',
+                                        ),
+                                      );
+                                    });
+                                  },
+                                  child: Text(
+                                    'Later',
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text(
+                                    'Cancel',
+                                  ),
+                                ),
+                              ],
+                              elevation: 0,
+                            ),
+                          );
+                        },
                         title: Text(
                           task.name,
                           style: TextStyle(
