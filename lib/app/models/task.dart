@@ -5,6 +5,7 @@ class Task {
     this.id,
     this.status,
     this.date,
+    this.note,
   });
 
   final int row;
@@ -12,6 +13,7 @@ class Task {
   final int id;
   final String status;
   final String date;
+  final String note;
 
   factory Task.fromMap(Map<String, dynamic> json) {
     return Task(
@@ -20,6 +22,7 @@ class Task {
       id: json['id'],
       status: json['status'],
       date: json['date'],
+      note: json['note'],
     );
   }
 
@@ -30,6 +33,7 @@ class Task {
       'id': id,
       'date': date,
       'status': status,
+      'note': note,
     };
   }
 }
