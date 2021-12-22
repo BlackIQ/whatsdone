@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'dart:math';
 import 'package:whatsdone/app/models/task.dart';
 import 'package:whatsdone/app/services/database.dart';
+import 'package:whatsdone/app/widgets/toast.dart';
 
 class AddTask extends StatefulWidget {
   @override
@@ -53,6 +54,7 @@ class _AddTaskState extends State<AddTask> {
                         status: 'home',
                       ),
                     );
+                    sendToast('${_taskName.text} added to database', true);
                     setState(() {
                       _taskName.clear();
                       _taskNote.clear();

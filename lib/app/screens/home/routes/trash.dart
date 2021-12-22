@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:whatsdone/app/services/database.dart';
 import 'package:whatsdone/app/models/task.dart';
+import 'package:whatsdone/app/widgets/toast.dart';
 
 class Trash extends StatefulWidget {
   @override
@@ -71,7 +72,7 @@ class _TrashState extends State<Trash> {
                                   ),
                                 ),
                                 content: Text(
-                                  task.name,
+                                  task.note,
                                 ),
                                 actions: [
                                   TextButton(
@@ -88,6 +89,7 @@ class _TrashState extends State<Trash> {
                                           ),
                                         );
                                       });
+                                      sendToast('Task moved to home', true);
                                     },
                                     child: Text(
                                       'Later',
@@ -102,6 +104,7 @@ class _TrashState extends State<Trash> {
                                       setState(() {
                                         DatabaseService.instance.remove(task.id);
                                       });
+                                      sendToast('Task is deleted from database', true);
                                     },
                                     child: Text(
                                       'Remove',
@@ -141,6 +144,7 @@ class _TrashState extends State<Trash> {
                           setState(() {
                             DatabaseService.instance.remove(task.id);
                           });
+                          sendToast('Task is deleted from database', true);
                         },
                         background: Container(
                           color: Colors.red,

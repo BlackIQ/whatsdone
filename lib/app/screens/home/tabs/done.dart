@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsdone/app/services/database.dart';
 import 'package:whatsdone/app/models/task.dart';
+import 'package:whatsdone/app/widgets/toast.dart';
 
 class DoneTasks extends StatefulWidget {
   @override
@@ -60,7 +61,7 @@ class _DoneTasksState extends State<DoneTasks> {
                                 ),
                               ),
                               content: Text(
-                                task.name,
+                                task.note,
                               ),
                               actions: [
                                 TextButton(
@@ -77,6 +78,7 @@ class _DoneTasksState extends State<DoneTasks> {
                                         ),
                                       );
                                     });
+                                    sendToast('Task moved to trash', true);
                                   },
                                   child: Text(
                                     'Delete',
@@ -99,6 +101,7 @@ class _DoneTasksState extends State<DoneTasks> {
                                         ),
                                       );
                                     });
+                                    sendToast('Task moved to home', true);
                                   },
                                   child: Text(
                                     'Later',
@@ -147,6 +150,7 @@ class _DoneTasksState extends State<DoneTasks> {
                               ),
                             );
                           });
+                          sendToast('Task moved to trash', true);
                         } else {
                           setState(() {
                             DatabaseService.instance.update(
@@ -159,6 +163,7 @@ class _DoneTasksState extends State<DoneTasks> {
                               ),
                             );
                           });
+                          sendToast('Task moved to home', true);
                         }
                       },
                       background: Container(
