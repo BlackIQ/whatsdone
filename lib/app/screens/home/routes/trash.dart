@@ -22,7 +22,7 @@ class _TrashState extends State<Trash> {
         ),
       ),
       body: FutureBuilder<List<Task>>(
-        future: DatabaseService.instance.selectTasks('home'),
+        future: DatabaseService.instance.getTasks('trash'),
         builder: (BuildContext context, AsyncSnapshot<List<Task>> snapshot) {
           if (!snapshot.hasData) {
             return Center(
@@ -74,7 +74,7 @@ class _TrashState extends State<Trash> {
                       ),
                       onDismissed: (direction) {
                         setState(() {
-                          DatabaseService.instance.deleteTask(task.id);
+                          DatabaseService.instance.remove(task.id);
                         });
                       },
                       background: Container(
