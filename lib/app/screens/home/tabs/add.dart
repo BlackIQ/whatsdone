@@ -32,17 +32,49 @@ class _AddTaskState extends State<AddTask> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
-                  await DatabaseService.instance.add(
-                    Task(
-                      name: _tasktxt.text,
-                      id: Random().nextInt(999),
-                      date: DateFormat('y/MMM/dd H:m:s').format(DateTime.now()),
-                      status: 'home',
-                    ),
-                  );
-                  setState(() {
-                    _tasktxt.clear();
-                  });
+                  if (_tasktxt.text.isNotEmpty) {
+                    await DatabaseService.instance.add(
+                      Task(
+                        name: _tasktxt.text,
+                        id: Random().nextInt(999),
+                        date:
+                            DateFormat('y/MMM/dd H:m:s').format(DateTime.now()),
+                        status: 'home',
+                      ),
+                    );
+                    setState(() {
+                      _tasktxt.clear();
+                    });
+                  } else {
+                    return showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text(
+                          'Null task!?',
+                          style: TextStyle(
+                            color: Colors.deepPurple,
+                          ),
+                        ),
+                        content: Text(
+                          'By submitting a null task name, there is no chance to insert a null task!',
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              'Ok',
+                              style: TextStyle(
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      barrierDismissible: false,
+                    );
+                  }
                 },
                 child: Text('Add this task'),
               ),
