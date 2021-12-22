@@ -37,10 +37,11 @@ class DatabaseService {
 
   Future<List<Task>> getTasks(String status) async {
     Database db = await instance.database;
+
     var home = await db.query(
       'tasks',
-      // where: 'status = ?',
-      // whereArgs: [status],
+      where: 'status = ?',
+      whereArgs: [status],
     );
     List<Task> homeList =
         home.isNotEmpty ? home.map((c) => Task.fromMap(c)).toList() : [];
