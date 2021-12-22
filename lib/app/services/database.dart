@@ -15,7 +15,7 @@ class DatabaseService {
 
   Future<Database> _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, 'newwdb.db');
+    String path = join(documentsDirectory.path, 'newwdb1.db');
     return await openDatabase(
       path,
       version: 1,
@@ -28,6 +28,7 @@ class DatabaseService {
       CREATE TABLE tasks(
         row INTEGER PRIMARY KEY,
         name TEXT,
+        note TEXT,
         id INTEGER,
         status TEXT,
         date TEXT
