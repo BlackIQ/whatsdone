@@ -10,10 +10,10 @@ class AddTask extends StatefulWidget {
 }
 
 class _AddTaskState extends State<AddTask> {
-  final TextEditingController _tasktxt = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    final TextEditingController _tasktxt = TextEditingController();
+
     return SingleChildScrollView(
       padding: EdgeInsets.all(20),
       child: Card(
@@ -31,8 +31,8 @@ class _AddTaskState extends State<AddTask> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  DatabaseService.instance.add(
+                onPressed: () async {
+                  await DatabaseService.instance.add(
                     Task(
                       name: _tasktxt.text,
                       id: Random().nextInt(999),
@@ -40,9 +40,10 @@ class _AddTaskState extends State<AddTask> {
                       status: 'home',
                     ),
                   );
-                  setState(() {
-                    _tasktxt.clear();
-                  });
+                  print(_tasktxt.text);
+                  // setState(() {
+                  //   _tasktxt.clear();
+                  // });
                 },
                 child: Text('Add this task'),
               ),

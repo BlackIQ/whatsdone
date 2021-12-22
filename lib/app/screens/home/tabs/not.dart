@@ -11,7 +11,7 @@ class _NotDoneState extends State<NotDone> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Task>>(
-      future: DatabaseService.instance.getTasks('not'),
+      future: DatabaseService.instance.getTasks('home'),
       builder: (BuildContext context, AsyncSnapshot<List<Task>> snapshot) {
         if (!snapshot.hasData) {
           return Center(
