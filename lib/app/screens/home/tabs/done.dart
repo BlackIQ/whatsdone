@@ -11,7 +11,7 @@ class _DoneTasksState extends State<DoneTasks> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Task>>(
-      future: DatabaseService.instance.selectTasks('home'),
+      future: DatabaseService.instance.getTasks('done'),
       builder: (BuildContext context, AsyncSnapshot<List<Task>> snapshot) {
         if (!snapshot.hasData) {
           return Center(
@@ -64,7 +64,7 @@ class _DoneTasksState extends State<DoneTasks> {
                     onDismissed: (direction) {
                       if (direction == DismissDirection.endToStart) {
                         setState(() {
-                          DatabaseService.instance.updateTask(
+                          DatabaseService.instance.update(
                             Task(
                               row: task.row,
                               id: task.id,
@@ -76,7 +76,7 @@ class _DoneTasksState extends State<DoneTasks> {
                         });
                       } else {
                         setState(() {
-                          DatabaseService.instance.updateTask(
+                          DatabaseService.instance.update(
                             Task(
                               row: task.row,
                               id: task.id,

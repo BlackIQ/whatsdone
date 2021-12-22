@@ -32,7 +32,7 @@ class _AddTaskState extends State<AddTask> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  DatabaseService.instance.addTask(
+                  DatabaseService.instance.add(
                     Task(
                       name: _tasktxt.text,
                       id: Random().nextInt(999),
