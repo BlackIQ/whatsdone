@@ -29,6 +29,7 @@ class Task {
       'name': name,
       'id': id,
       'date': date,
+      'status': status,
     };
   }
 }
