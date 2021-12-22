@@ -28,8 +28,11 @@ class _HomeState extends State<Home> {
       _selectedIndex = index;
     });
     // pageController.jumpToPage(index);
-    pageController.animateToPage(index,
-        duration: Duration(milliseconds: 1000), curve: Curves.ease);
+    pageController.animateToPage(
+      index,
+      duration: Duration(milliseconds: 1000),
+      curve: Curves.ease,
+    );
   }
 
   @override
@@ -155,9 +158,49 @@ class _HomeState extends State<Home> {
           style: GoogleFonts.patrickHand(),
         ),
         actions: [
-          FlatButton(
+          TextButton(
             onPressed: () async {
-              return _auth.signOut();
+              return showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text(
+                    'Logout',
+                    style: TextStyle(
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                  content: Text(
+                    'Sure to logout?',
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(
+                        'Cancel',
+                        style: TextStyle(
+                          color: Colors.deepPurple,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        Navigator.of(context).pop();
+                        return _auth.signOut();
+                      },
+                      child: Text(
+                        'Logout',
+                        style: TextStyle(
+                          color: Colors.deepPurple,
+                        ),
+                      ),
+                    ),
+                  ],
+                  elevation: 0,
+                ),
+                barrierDismissible: false,
+              );
             },
             child: Text(
               'Logout',
