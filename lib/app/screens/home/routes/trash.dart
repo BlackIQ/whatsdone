@@ -54,38 +54,40 @@ class _TrashState extends State<Trash> {
                   ),
                 )
               : ListView(
-                  children: snapshot.data.map((task) {
-                    return Dismissible(
-                      key: UniqueKey(),
-                      child: ListTile(
-                        title: Text(
-                          task.name,
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.deepPurple,
+                  children: snapshot.data.map(
+                    (task) {
+                      return Dismissible(
+                        key: UniqueKey(),
+                        child: ListTile(
+                          title: Text(
+                            task.name,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.red,
+                            ),
+                          ),
+                          subtitle: Text(
+                            task.date,
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
                           ),
                         ),
-                        subtitle: Text(
-                          task.date,
-                          style: TextStyle(
-                            fontSize: 15,
+                        onDismissed: (direction) {
+                          setState(() {
+                            DatabaseService.instance.remove(task.id);
+                          });
+                        },
+                        background: Container(
+                          color: Colors.red,
+                          child: Icon(
+                            Icons.delete,
+                            color: Colors.white,
                           ),
                         ),
-                      ),
-                      onDismissed: (direction) {
-                        setState(() {
-                          DatabaseService.instance.remove(task.id);
-                        });
-                      },
-                      background: Container(
-                        color: Colors.red,
-                        child: Icon(
-                          Icons.delete,
-                          color: Colors.white,
-                        ),
-                      ),
-                    );
-                  }).toList(),
+                      );
+                    },
+                  ).toList(),
                 );
         },
       ),

@@ -43,67 +43,69 @@ class _DoneTasksState extends State<DoneTasks> {
                 ),
               )
             : ListView(
-                children: snapshot.data.map((task) {
-                  return Dismissible(
-                    key: UniqueKey(),
-                    child: ListTile(
-                      title: Text(
-                        task.name,
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.deepPurple,
+                children: snapshot.data.map(
+                  (task) {
+                    return Dismissible(
+                      key: UniqueKey(),
+                      child: ListTile(
+                        title: Text(
+                          task.name,
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.deepPurple,
+                          ),
+                        ),
+                        subtitle: Text(
+                          task.date,
+                          style: TextStyle(
+                            fontSize: 15,
+                          ),
                         ),
                       ),
-                      subtitle: Text(
-                        task.date,
-                        style: TextStyle(
-                          fontSize: 15,
+                      onDismissed: (direction) {
+                        if (direction == DismissDirection.endToStart) {
+                          setState(() {
+                            DatabaseService.instance.update(
+                              Task(
+                                row: task.row,
+                                id: task.id,
+                                date: task.date,
+                                name: task.name,
+                                status: 'trash',
+                              ),
+                            );
+                          });
+                        } else {
+                          setState(() {
+                            DatabaseService.instance.update(
+                              Task(
+                                row: task.row,
+                                id: task.id,
+                                date: task.date,
+                                name: task.name,
+                                status: 'home',
+                              ),
+                            );
+                          });
+                        }
+                      },
+                      background: Container(
+                        color: Colors.blueAccent,
+                        child: Icon(
+                          Icons.timer,
+                          color: Colors.white,
                         ),
                       ),
-                    ),
-                    onDismissed: (direction) {
-                      if (direction == DismissDirection.endToStart) {
-                        setState(() {
-                          DatabaseService.instance.update(
-                            Task(
-                              row: task.row,
-                              id: task.id,
-                              date: task.date,
-                              name: task.name,
-                              status: 'trash',
-                            ),
-                          );
-                        });
-                      } else {
-                        setState(() {
-                          DatabaseService.instance.update(
-                            Task(
-                              row: task.row,
-                              id: task.id,
-                              date: task.date,
-                              name: task.name,
-                              status: 'home',
-                            ),
-                          );
-                        });
-                      }
-                    },
-                    background: Container(
-                      color: Colors.blueAccent,
-                      child: Icon(
-                        Icons.timer,
-                        color: Colors.white,
+                      secondaryBackground: Container(
+                        color: Colors.red,
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    secondaryBackground: Container(
-                      color: Colors.red,
-                      child: Icon(
-                        Icons.delete,
-                        color: Colors.white,
-                      ),
-                    ),
-                  );
-                }).toList(),
+                    );
+                  },
+                ).toList(),
               );
       },
     );
