@@ -37,8 +37,9 @@ class _AddTaskState extends State<AddTask> {
                       Task(
                         name: _tasktxt.text,
                         id: Random().nextInt(999),
-                        date:
-                            DateFormat('y/MMM/dd H:m:s').format(DateTime.now()),
+                        date: DateFormat('y/MMM/dd H:m:s').format(
+                          DateTime.now(),
+                        ),
                         status: 'home',
                       ),
                     );
