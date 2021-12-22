@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:whatsdone/app/services/authenticarion.dart';
+import 'dart:io';
 
 class Authentication extends StatefulWidget {
   @override
@@ -10,6 +11,7 @@ class Authentication extends StatefulWidget {
 
 class _AuthenticationState extends State<Authentication> {
   final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,9 +50,72 @@ class _AuthenticationState extends State<Authentication> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () async {
-                  dynamic result = await _auth.googleLogin();
-                  if (result.runtimeType == List) {
-                    print(result[1]);
+                  try {
+                    final result = await InternetAddress.lookup('google.com');
+                    if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+                      dynamic result = await _auth.googleLogin();
+                      if (result.runtimeType == List) {
+                        return showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text(
+                              'Something went wrong',
+                              style: TextStyle(
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                            content: Text(
+                              result[1],
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text(
+                                  'Ok',
+                                  style: TextStyle(
+                                    color: Colors.deepPurple,
+                                  ),
+                                ),
+                              ),
+                            ],
+                            elevation: 0,
+                          ),
+                          barrierDismissible: false,
+                        );
+                      }
+                    }
+                  } catch (e) {
+                    return showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text(
+                          'Something went wrong',
+                          style: TextStyle(
+                            color: Colors.deepPurple,
+                          ),
+                        ),
+                        content: Text(
+                          'It seems there is no internet connection.',
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              'Ok',
+                              style: TextStyle(
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                        ],
+                        elevation: 0,
+                      ),
+                      barrierDismissible: false,
+                    );
                   }
                 },
                 child: Row(
