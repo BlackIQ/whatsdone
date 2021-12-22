@@ -40,10 +40,9 @@ class _AddTaskState extends State<AddTask> {
                       status: 'home',
                     ),
                   );
-                  print(_tasktxt.text);
-                  // setState(() {
-                  //   _tasktxt.clear();
-                  // });
+                  setState(() {
+                    _tasktxt.clear();
+                  });
                 },
                 child: Text('Add this task'),
               ),

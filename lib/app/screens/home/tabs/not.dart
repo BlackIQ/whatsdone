@@ -55,7 +55,7 @@ class _NotDoneState extends State<NotDone> {
                         ),
                       ),
                       subtitle: Text(
-                        task.date,
+                        '${task.date} } ${task.status}',
                         style: TextStyle(
                           fontSize: 15,
                         ),
