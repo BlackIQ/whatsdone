@@ -6,6 +6,7 @@ import 'package:whatsdone/app/services/authenticarion.dart';
 import 'package:whatsdone/app/screens/home/tabs/done.dart';
 import 'package:whatsdone/app/screens/home/tabs/not.dart';
 import 'package:whatsdone/app/screens/home/tabs/add.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:whatsdone/app/models/user.dart';
 import 'package:provider/provider.dart';
@@ -140,6 +141,98 @@ class _HomeState extends State<Home> {
                 MaterialPageRoute(
                   fullscreenDialog: true,
                   builder: (context) => Developer(),
+                ),
+              ),
+            ),
+            DrawerItems(
+              text: 'Whats new in 2.7.5',
+              icon: FontAwesomeIcons.solidStar,
+              onTap: () => showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  elevation: 0,
+                  title: Text(
+                    'Whats new in Whats Done 2.7.5',
+                    style: TextStyle(
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                  content: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'In this version we had some updates and most of them are related to Firebase and user analytics.',
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          'Updates',
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          '- Firebase Authentication',
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                        Text(
+                          '- PopUp dialogs',
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                        Text(
+                          '- Toasts for actions',
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                        Text(
+                          '- Add note about task',
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                        Text(
+                          '- AIO data storage',
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                            'Yeah we had some issues in previous version that is solved in current version. To read and know information about them, head over to Medium article about this version.'),
+                      ],
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () async {
+                        await launch('https://google.com');
+                      },
+                      child: Text(
+                        'Medium article about 2.7.5',
+                        style: TextStyle(
+                          color: Colors.deepPurple,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(
+                        'Close',
+                        style: TextStyle(
+                          color: Colors.deepPurple,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
