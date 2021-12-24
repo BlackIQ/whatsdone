@@ -2,7 +2,7 @@ name: whatsdone
 description: Track your TODOs with WhatsDone
 
 publish_to: 'none'
-version: 1.0.0+1
+version: 2.7.5+2
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
