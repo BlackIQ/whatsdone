@@ -6,11 +6,13 @@ class MenuButton extends StatelessWidget {
     this.text,
     this.click,
     this.icon,
+    this.isDelete,
   });
 
   final text;
   final click;
   final icon;
+  final isDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +23,13 @@ class MenuButton extends StatelessWidget {
         children: [
           FaIcon(
             icon,
-            color: Colors.deepPurple,
+            color: isDelete ? Colors.red : Colors.deepPurple,
             size: 15,
           ),
           Text(
             text,
             style: TextStyle(
-              color: Colors.deepPurple,
+              color: isDelete ? Colors.red : Colors.deepPurple,
             ),
           )
         ],
