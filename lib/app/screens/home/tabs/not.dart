@@ -62,6 +62,7 @@ class _NotDoneState extends State<NotDone> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   MenuButton(
+                                    isDelete: false,
                                     text: 'Open task',
                                     icon: FontAwesomeIcons.search,
                                     click: () {
@@ -73,6 +74,7 @@ class _NotDoneState extends State<NotDone> {
                                     },
                                   ),
                                   MenuButton(
+                                    isDelete: false,
                                     text: 'Update task',
                                     icon: FontAwesomeIcons.edit,
                                     click: () {
@@ -81,6 +83,28 @@ class _NotDoneState extends State<NotDone> {
                                           builder: (context) => UpdateTask(task: task),
                                         ),
                                       );
+                                    },
+                                  ),
+                                  Divider(color: Colors.red),
+                                  MenuButton(
+                                    isDelete: true,
+                                    text: 'Delete task',
+                                    icon: FontAwesomeIcons.trash,
+                                    click: () {
+                                      setState(() {
+                                        DatabaseService.instance.update(
+                                          Task(
+                                            row: task.row,
+                                            id: task.id,
+                                            date: task.date,
+                                            name: task.name,
+                                            note: task.note,
+                                            status: 'trash',
+                                          ),
+                                        );
+                                      });
+                                      Navigator.of(context).pop();
+                                      sendToast('Task moved to trash', true);
                                     },
                                   ),
                                 ],

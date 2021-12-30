@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:whatsdone/app/screens/home/routes/task.dart';
+import 'package:whatsdone/app/screens/home/routes/update.dart';
 import 'package:whatsdone/app/services/database.dart';
 import 'package:whatsdone/app/models/task.dart';
+import 'package:whatsdone/app/widgets/buttons/menu_button.dart';
 import 'package:whatsdone/app/widgets/toast.dart';
 
 class DoneTasks extends StatefulWidget {
@@ -50,13 +53,65 @@ class _DoneTasksState extends State<DoneTasks> {
                     return Dismissible(
                       key: UniqueKey(),
                       child: ListTile(
-                        onLongPress: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => OpenTask(task: task),
+                        onLongPress: () => showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            content: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  MenuButton(
+                                    isDelete: false,
+                                    text: 'Open task',
+                                    icon: FontAwesomeIcons.search,
+                                    click: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => OpenTask(task: task),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                  MenuButton(
+                                    isDelete: false,
+                                    text: 'Update task',
+                                    icon: FontAwesomeIcons.edit,
+                                    click: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => UpdateTask(task: task),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                  Divider(color: Colors.red),
+                                  MenuButton(
+                                    isDelete: true,
+                                    text: 'Delete task',
+                                    icon: FontAwesomeIcons.trash,
+                                    click: () {
+                                      setState(() {
+                                        DatabaseService.instance.update(
+                                          Task(
+                                            row: task.row,
+                                            id: task.id,
+                                            date: task.date,
+                                            name: task.name,
+                                            note: task.note,
+                                            status: 'trash',
+                                          ),
+                                        );
+                                      });
+                                      Navigator.of(context).pop();
+                                      sendToast('Task moved to trash', true);
+                                    },
+                                  ),
+                                ],
+                              ),
                             ),
-                          );
-                        },
+                          ),
+                        ),
                         title: Text(
                           task.name,
                           style: TextStyle(
