@@ -6,8 +6,5 @@ import 'package:whatsdone/app/screens/authentication/authentication.dart';
 
 class Landing extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
-    return user != null ? Home() : Authentication();
-  }
+  Widget build(BuildContext context) => Provider.of<User>(context) != null ? Home() : Authentication();
 }
