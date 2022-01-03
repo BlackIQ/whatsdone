@@ -317,7 +317,7 @@ class _HomeState extends State<Home> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: changePage,
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.grey[100],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.deepPurple,
         unselectedItemColor: Colors.grey,
