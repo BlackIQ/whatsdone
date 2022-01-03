@@ -25,8 +25,8 @@ class _UpdateTaskState extends State<UpdateTask> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        leading: FlatButton(
-          child: Icon(
+        leading: IconButton(
+          icon: Icon(
             Icons.arrow_back,
             color: Colors.white,
           ),
