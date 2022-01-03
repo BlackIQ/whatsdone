@@ -65,7 +65,8 @@ class _HomeState extends State<Home> {
                   Row(
                     children: <Widget>[
                       CircleAvatar(
-                        backgroundImage: NetworkImage(user.profile),
+                        backgroundImage: user.profile != null ? NetworkImage(user.profile) : null,
+                        child: Icon(Icons.person),
                         radius: 25,
                       ),
                       SizedBox(width: 20),
@@ -81,7 +82,7 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                           Text(
-                            user.name,
+                            user.name != null ? user.name : 'Guest user',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -94,7 +95,7 @@ class _HomeState extends State<Home> {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    user.email,
+                    user.email != null ? user.email : 'Guest has no Email',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 15,
