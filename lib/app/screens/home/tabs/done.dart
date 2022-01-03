@@ -5,6 +5,7 @@ import 'package:whatsdone/app/screens/home/routes/update.dart';
 import 'package:whatsdone/app/services/database.dart';
 import 'package:whatsdone/app/models/task.dart';
 import 'package:whatsdone/app/widgets/buttons/menu_button.dart';
+import 'package:whatsdone/app/widgets/modal/modalbottom.dart';
 import 'package:whatsdone/app/widgets/toast.dart';
 
 class DoneTasks extends StatefulWidget {
@@ -61,6 +62,14 @@ class _DoneTasksState extends State<DoneTasks> {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
+                                  MenuButton(
+                                    isDelete: false,
+                                    text: 'Review task',
+                                    icon: FontAwesomeIcons.boxOpen,
+                                    click: () {
+                                      modalBottom(context, task.name, task.note);
+                                    },
+                                  ),
                                   MenuButton(
                                     isDelete: false,
                                     text: 'Open task',
