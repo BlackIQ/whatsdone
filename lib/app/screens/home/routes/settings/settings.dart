@@ -7,7 +7,7 @@ import 'package:whatsdone/app/screens/home/routes/settings/settings_route/task_c
 import 'package:whatsdone/app/screens/home/routes/settings/settings_route/task_font.dart';
 import 'package:whatsdone/app/screens/home/routes/settings/settings_route/theme.dart';
 
-class Settings extends StatelessWidget {
+class SettingsPage extends StatelessWidget {
   List<Map> items = [
     {
       'title': 'General settings',

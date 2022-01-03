@@ -242,7 +242,7 @@ class _HomeState extends State<Home> {
               text: 'Settings',
               icon: FontAwesomeIcons.cogs,
               onTap: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Settings())),
+                  context, MaterialPageRoute(builder: (context) => SettingsPage())),
             ),
             DrawerItems(
               text: 'Exit',
