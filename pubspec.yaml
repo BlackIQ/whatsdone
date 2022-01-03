@@ -24,6 +24,8 @@ dependencies:
   fluttertoast: ^8.0.8
   shared_preferences: ^2.0.11
   url_launcher: ^6.0.17
+  flutter_colorpicker: ^1.0.3
+  hexcolor: ^2.0.5
 
 flutter_icons:
   android: true
