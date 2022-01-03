@@ -27,6 +27,18 @@ class AuthService {
     return _auth.onAuthStateChanged.map(_userFromFirebaseUser);
   }
 
+  Future anonLogin() async {
+    try {
+      AuthResult result = await _auth.signInAnonymously();
+      return _userFromFirebaseUser(result.user); 
+    } catch (e) {
+     return [
+        null,
+        e.toString(),
+      ]; 
+    }
+  }
+
   // Signin with Google
   Future googleLogin() async {
     try {
