@@ -1,8 +1,8 @@
+import 'package:whatsdone/app/screens/home/routes/settings/settings.dart';
 import 'package:whatsdone/app/screens/home/routes/developer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:whatsdone/app/widgets/drawer/drawer_item.dart';
 import 'package:whatsdone/app/screens/home/routes/trash.dart';
-import 'package:whatsdone/app/screens/home/routes/settings.dart';
 import 'package:whatsdone/app/services/authenticarion.dart';
 import 'package:whatsdone/app/screens/home/tabs/done.dart';
 import 'package:whatsdone/app/screens/home/tabs/not.dart';
