@@ -3,15 +3,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:whatsdone/app/screens/home/routes/settings/settings_route/account.dart';
 import 'package:whatsdone/app/screens/home/routes/settings/settings_route/data.dart';
 import 'package:whatsdone/app/screens/home/routes/settings/settings_route/general.dart';
-import 'package:whatsdone/app/screens/home/routes/settings/settings_route/task_color.dart';
-import 'package:whatsdone/app/screens/home/routes/settings/settings_route/task_font.dart';
 import 'package:whatsdone/app/screens/home/routes/settings/settings_route/theme.dart';
 
 class SettingsPage extends StatelessWidget {
   List<Map> items = [
     {
       'title': 'General settings',
-      'details': 'General settings includes app font, color and etc',
+      'details': 'General settings like font and others',
       'route': GeneralSettings(),
       'leading': FontAwesomeIcons.cog,
     },
@@ -20,18 +18,6 @@ class SettingsPage extends StatelessWidget {
       'details': 'Theme settings for dark or light mode',
       'route': ThemeSettings(),
       'leading': FontAwesomeIcons.adjust,
-    },
-    {
-      'title': 'Task font settings',
-      'details': 'Font settings for Task. Like note, title and etc',
-      'route': TaskFontSettings(),
-      'leading': FontAwesomeIcons.font,
-    },
-    {
-      'title': 'Task color settings',
-      'details': 'Color settings for Task. Color of texts',
-      'route': TaskColorSettings(),
-      'leading': FontAwesomeIcons.palette,
     },
     {
       'title': 'Account settings',
