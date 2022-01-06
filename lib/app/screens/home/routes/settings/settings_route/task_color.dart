@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TaskColorSettings extends StatelessWidget {
   @override
@@ -20,7 +21,12 @@ class TaskColorSettings extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Task color'),
+            ElevatedButton(
+              onPressed: () async {
+                // TODO: Fix it
+              },
+              child: Text('Change color'),
+            ),
           ],
         ),
       ),
