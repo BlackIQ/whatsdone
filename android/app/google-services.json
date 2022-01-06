@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "1000368315925-vog59r62ds7rcvo0unmrqtqnah17jchp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blackiq.whatsdone",
+            "certificate_hash": "90672126111fa48780d08c66d852815fe41b702d"
+          }
+        },
+        {
           "client_id": "1000368315925-9i23q5n9rbf1ho7fp0bgsrbtcsl0442p.apps.googleusercontent.com",
           "client_type": 3
         }
