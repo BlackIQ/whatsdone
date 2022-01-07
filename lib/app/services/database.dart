@@ -1,3 +1,4 @@
+import 'package:whatsdone/app/models/setting.dart';
 import 'package:whatsdone/app/models/task.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -15,7 +16,7 @@ class DatabaseService {
 
   Future<Database> _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, 'newwdb1.db');
+    String path = join(documentsDirectory.path, 'newwdb2.db');
     return await openDatabase(
       path,
       version: 1,
@@ -34,8 +35,18 @@ class DatabaseService {
         date TEXT
       )
     ''');
+    await db.execute('''
+      CREATE TABLE settings(
+        background TEXT,
+        taskNameColor TEXT,
+        taskNameFont TEXT,
+        taskDateColor TEXT,
+        taskDateFont TEXT,
+      )
+    ''');
   }
 
+  // Select task
   Future<List<Task>> getTasks(String status) async {
     Database db = await instance.database;
 
@@ -44,10 +55,12 @@ class DatabaseService {
       where: 'status = ?',
       whereArgs: [status],
     );
-    List<Task> taskList = query.isNotEmpty ? query.map((c) => Task.fromMap(c)).toList() : [];
+    List<Task> taskList =
+        query.isNotEmpty ? query.map((c) => Task.fromMap(c)).toList() : [];
     return taskList;
   }
 
+  // Insert task
   Future<int> add(Task task) async {
     Database db = await instance.database;
     return await db.insert(
@@ -57,6 +70,7 @@ class DatabaseService {
     );
   }
 
+  // Delete task
   Future<int> remove(int id) async {
     Database db = await instance.database;
     return await db.delete(
@@ -66,6 +80,7 @@ class DatabaseService {
     );
   }
 
+  // Update task
   Future<int> update(Task task) async {
     Database db = await instance.database;
     return await db.update(
@@ -75,12 +90,27 @@ class DatabaseService {
       whereArgs: [task.id],
     );
   }
+
+  // Select settings
+  Future<List<Setting>> getSettings() async {
+    Database db = await instance.database;
+
+    var query = await db.query(
+      'settings',
+    );
+    List<Setting> settingList =
+        query.isNotEmpty ? query.map((c) => Setting.fromMap(c)).toList() : [];
+    return settingList;
+  }
+
+  // Update setting
+  Future<int> updateSettings(Setting setting) async {
+    Database db = await instance.database;
+    return await db.update(
+      'settings',
+      setting.toMap(),
+    );
+  }
 }
 
-Future<void> pageRefresh() {
-  return Future.delayed(
-    Duration(
-      seconds: 1,
-    ),
-  );
-}
+Future<void> pageRefresh() => Future.delayed(Duration(seconds: 1));
