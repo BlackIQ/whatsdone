@@ -36,7 +36,7 @@ class DatabaseService {
       )
     ''');
     await db.execute('''
-      CREATE TABLE settings(
+      CREATE TABLE setting(
         background TEXT,
         taskNameColor TEXT,
         taskNameFont TEXT,
@@ -96,7 +96,7 @@ class DatabaseService {
     Database db = await instance.database;
 
     var query = await db.query(
-      'settings',
+      'setting',
     );
     List<Setting> settingList =
         query.isNotEmpty ? query.map((c) => Setting.fromMap(c)).toList() : [];
@@ -107,7 +107,7 @@ class DatabaseService {
   Future<int> updateSettings(Setting setting) async {
     Database db = await instance.database;
     return await db.update(
-      'settings',
+      'setting',
       setting.toMap(),
     );
   }
