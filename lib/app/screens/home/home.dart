@@ -1,11 +1,11 @@
-import 'package:whatsdone/app/screens/home/routes/developer.dart';
+import 'package:whatsdone/app/screens/home/routes/development_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:whatsdone/app/widgets/drawer/drawer_item.dart';
-import 'package:whatsdone/app/screens/home/routes/trash.dart';
+import 'package:whatsdone/app/screens/home/routes/trash_screen.dart';
 import 'package:whatsdone/app/services/authenticarion.dart';
-import 'package:whatsdone/app/screens/home/routes/done.dart';
-import 'package:whatsdone/app/screens/home/routes/not.dart';
-import 'package:whatsdone/app/screens/home/routes/add.dart';
+import 'package:whatsdone/app/screens/home/routes/done_tab.dart';
+import 'package:whatsdone/app/screens/home/routes/not_tab.dart';
+import 'package:whatsdone/app/screens/home/routes/add_tab.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:whatsdone/app/models/user.dart';
