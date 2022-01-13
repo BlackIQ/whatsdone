@@ -1,4 +1,3 @@
-import 'package:whatsdone/app/models/setting.dart';
 import 'package:whatsdone/app/models/task.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -16,7 +15,7 @@ class DatabaseService {
 
   Future<Database> _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, 'newwdb2.db');
+    String path = join(documentsDirectory.path, 'newwdb3.db');
     return await openDatabase(
       path,
       version: 1,
@@ -33,15 +32,6 @@ class DatabaseService {
         id INTEGER,
         status TEXT,
         date TEXT
-      )
-    ''');
-    await db.execute('''
-      CREATE TABLE setting(
-        background TEXT,
-        taskNameColor TEXT,
-        taskNameFont TEXT,
-        taskDateColor TEXT,
-        taskDateFont TEXT,
       )
     ''');
   }
