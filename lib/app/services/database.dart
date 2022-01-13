@@ -90,27 +90,6 @@ class DatabaseService {
       whereArgs: [task.id],
     );
   }
-
-  // Select settings
-  Future<List<Setting>> getSettings() async {
-    Database db = await instance.database;
-
-    var query = await db.query(
-      'setting',
-    );
-    List<Setting> settingList =
-        query.isNotEmpty ? query.map((c) => Setting.fromMap(c)).toList() : [];
-    return settingList;
-  }
-
-  // Update setting
-  Future<int> updateSettings(Setting setting) async {
-    Database db = await instance.database;
-    return await db.update(
-      'setting',
-      setting.toMap(),
-    );
-  }
 }
 
 Future<void> pageRefresh() => Future.delayed(Duration(seconds: 1));
