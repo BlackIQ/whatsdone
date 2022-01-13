@@ -31,9 +31,6 @@ class _UpdateTaskState extends State<UpdateTask> {
             color: Colors.white,
           ),
           onPressed: () {
-            Navigator.of(context).pop();
-            Navigator.of(context).pop();
-            Navigator.of(context).pop();
           },
         ),
         title: Text('Update task'),
