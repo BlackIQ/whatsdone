@@ -50,31 +50,30 @@ class _UpdateTaskState extends State<UpdateTask> {
               if (_name.text.isEmpty && _note.text.isEmpty) {
                 return showDialog(
                   context: context,
-                  builder: (context) =>
-                      AlertDialog(
-                        title: Text(
-                          'Null changes!?',
+                  builder: (context) => AlertDialog(
+                    title: Text(
+                      'Null changes!?',
+                      style: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                    content: Text(
+                      'You filled none of the fields. So app is not going to replace data with null items.',
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                          'Ok',
                           style: TextStyle(
                             color: Colors.deepPurple,
                           ),
                         ),
-                        content: Text(
-                          'You filled none of the fields. So app is not going to replace data with null items.',
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text(
-                              'Ok',
-                              style: TextStyle(
-                                color: Colors.deepPurple,
-                              ),
-                            ),
-                          ),
-                        ],
                       ),
+                    ],
+                  ),
                   barrierDismissible: false,
                 );
               } else {
@@ -84,8 +83,10 @@ class _UpdateTaskState extends State<UpdateTask> {
                       id: widget.task.id,
                       date: widget.task.date,
                       status: widget.task.status,
-                      name: _name.text.isNotEmpty ? _name.text : widget.task.name,
-                      note: _note.text.isNotEmpty ? _note.text : widget.task.note,
+                      name:
+                          _name.text.isNotEmpty ? _name.text : widget.task.name,
+                      note:
+                          _note.text.isNotEmpty ? _note.text : widget.task.note,
                       row: widget.task.row,
                     ),
                   );
