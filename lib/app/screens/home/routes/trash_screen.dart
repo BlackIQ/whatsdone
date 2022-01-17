@@ -33,7 +33,7 @@ class _TrashState extends State<Trash> {
           if (!snapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(
-                color: Colors.deepPurple,
+                color: Colors.red,
               ),
             );
           }
@@ -65,13 +65,15 @@ class _TrashState extends State<Trash> {
                       return Dismissible(
                         key: UniqueKey(),
                         child: ListTile(
-                          onTap: () => modalBottom(context, task.name, task.note, true),
+                          onTap: () =>
+                              modalBottom(context, task.name, task.note, true),
                           onLongPress: () => showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
                               content: SingleChildScrollView(
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     MenuButton(
@@ -79,7 +81,8 @@ class _TrashState extends State<Trash> {
                                       text: 'Review task',
                                       icon: FontAwesomeIcons.boxOpen,
                                       click: () {
-                                        modalBottom(context, task.name, task.note, true);
+                                        modalBottom(context, task.name,
+                                            task.note, true);
                                       },
                                     ),
                                     MenuButton(
@@ -87,9 +90,11 @@ class _TrashState extends State<Trash> {
                                       text: 'Open task',
                                       icon: FontAwesomeIcons.search,
                                       click: () {
+                                        Navigator.of(context).pop();
                                         Navigator.of(context).push(
                                           MaterialPageRoute(
-                                            builder: (context) => OpenTask(task: task),
+                                            builder: (context) => OpenTask(
+                                                task: task, trash: false),
                                           ),
                                         );
                                       },
@@ -102,7 +107,8 @@ class _TrashState extends State<Trash> {
                                         Navigator.of(context).pop();
                                         Navigator.of(context).push(
                                           MaterialPageRoute(
-                                            builder: (context) => UpdateTask(task: task, trash: true),
+                                            builder: (context) => UpdateTask(
+                                                task: task, trash: true),
                                           ),
                                         );
                                       },
@@ -114,10 +120,12 @@ class _TrashState extends State<Trash> {
                                       icon: FontAwesomeIcons.trash,
                                       click: () {
                                         setState(() {
-                                          DatabaseService.instance.remove(task.id);
+                                          DatabaseService.instance
+                                              .remove(task.id);
                                         });
                                         Navigator.of(context).pop();
-                                        sendToast('Task removed from database', true);
+                                        sendToast(
+                                            'Task removed from database', true);
                                       },
                                     ),
                                   ],
