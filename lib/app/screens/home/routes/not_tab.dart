@@ -77,6 +77,7 @@ class _NotDoneState extends State<NotDone> {
                                     text: 'Open task',
                                     icon: FontAwesomeIcons.search,
                                     click: () {
+                                      Navigator.of(context).pop();
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (context) => OpenTask(task: task),
@@ -89,9 +90,10 @@ class _NotDoneState extends State<NotDone> {
                                     text: 'Update task',
                                     icon: FontAwesomeIcons.edit,
                                     click: () {
+                                      Navigator.of(context).pop();
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
-                                          builder: (context) => UpdateTask(task: task),
+                                          builder: (context) => UpdateTask(task: task, trash: false),
                                         ),
                                       );
                                     },
