@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:whatsdone/app/models/task.dart';
+import 'package:whatsdone/app/screens/home/home.dart';
+import 'package:whatsdone/app/screens/home/routes/trash_screen.dart';
 import 'package:whatsdone/app/services/database.dart';
 import 'package:whatsdone/app/widgets/toast.dart';
 
 class UpdateTask extends StatefulWidget {
   UpdateTask({
     this.task,
+    this.trash,
   });
 
   final task;
+  final trash;
 
   @override
   State<UpdateTask> createState() => _UpdateTaskState();
@@ -31,54 +35,57 @@ class _UpdateTaskState extends State<UpdateTask> {
             color: Colors.white,
           ),
           onPressed: () {
+            Navigator.of(context).pop();
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => widget.trash ? Trash() : Home(),
+              ),
+            );
           },
         ),
         title: Text('Update task'),
         actions: [
           FlatButton(
             onPressed: () {
-              if (_name.text == '' && _note.text == '') {
+              if (_name.text.isEmpty && _note.text.isEmpty) {
                 return showDialog(
                   context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text(
-                      'Null changes!?',
-                      style: TextStyle(
-                        color: Colors.deepPurple,
-                      ),
-                    ),
-                    content: Text(
-                      'You filled none of the fields. So app is not going to replace data with null items.',
-                    ),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(
-                          'Ok',
+                  builder: (context) =>
+                      AlertDialog(
+                        title: Text(
+                          'Null changes!?',
                           style: TextStyle(
                             color: Colors.deepPurple,
                           ),
                         ),
+                        content: Text(
+                          'You filled none of the fields. So app is not going to replace data with null items.',
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              'Ok',
+                              style: TextStyle(
+                                color: Colors.deepPurple,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
                   barrierDismissible: false,
                 );
               } else {
-                print(_name.text);
-                print(_note.text);
                 setState(() {
                   DatabaseService.instance.update(
                     Task(
                       id: widget.task.id,
                       date: widget.task.date,
                       status: widget.task.status,
-                      name:
-                          _name.text.isNotEmpty ? _name.text : widget.task.name,
-                      note:
-                          _note.text.isNotEmpty ? _note.text : widget.task.note,
+                      name: _name.text.isNotEmpty ? _name.text : widget.task.name,
+                      note: _note.text.isNotEmpty ? _note.text : widget.task.note,
                       row: widget.task.row,
                     ),
                   );
