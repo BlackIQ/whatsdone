@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:whatsdone/app/screens/home/home.dart';
+import 'package:whatsdone/app/screens/home/routes/trash_screen.dart';
 
 class OpenTask extends StatelessWidget {
   OpenTask({
     this.task,
+    this.trash,
   });
 
   final task;
+  final trash;
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +18,20 @@ class OpenTask extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
         title: Text(task.name),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => trash ? Trash() : Home(),
+              ),
+            );
+          },
+        ),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
