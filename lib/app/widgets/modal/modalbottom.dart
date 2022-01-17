@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void modalBottom(context, name, note) {
+void modalBottom(context, name, note, trash) {
   showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
@@ -20,7 +20,7 @@ void modalBottom(context, name, note) {
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,
-              color: Colors.deepPurple,
+              color: trash ? Colors.red : Colors.deepPurple,
             ),
           ),
           SizedBox(height: 20),
