@@ -130,7 +130,7 @@ class _HomeState extends State<Home> {
                   height: 50,
                   width: 50,
                 ),
-                applicationVersion: '1.0.0',
+                applicationVersion: '2.11.9',
                 applicationName: 'Whats Done!?',
                 applicationLegalese: 'Track your TODOs with Whats Done.',
               ),
@@ -146,14 +146,14 @@ class _HomeState extends State<Home> {
               ),
             ),
             DrawerItems(
-              text: 'Whats new in 2.7.5',
+              text: 'Whats new in 2.11.9',
               icon: FontAwesomeIcons.solidStar,
               onTap: () => showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
                   elevation: 0,
                   title: Text(
-                    'Whats new in Whats Done 2.7.5',
+                    'Whats new in Whats Done 2.11.9',
                     style: TextStyle(
                       color: Colors.deepPurple,
                     ),
@@ -164,7 +164,7 @@ class _HomeState extends State<Home> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'In this version we had some updates and most of them are related to Firebase and user analytics.',
+                          'No major update, just minors!'
                         ),
                         SizedBox(height: 5),
                         Text(
@@ -175,38 +175,37 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         Text(
-                          '- Firebase Authentication',
+                          '- Anonymous authentication',
                           style: TextStyle(
                             fontSize: 14,
                           ),
                         ),
                         Text(
-                          '- PopUp dialogs',
+                          '- Updating task',
                           style: TextStyle(
                             fontSize: 14,
                           ),
                         ),
                         Text(
-                          '- Toasts for actions',
+                          '- Bottom task review',
                           style: TextStyle(
                             fontSize: 14,
                           ),
                         ),
                         Text(
-                          '- Add note about task',
+                          '- Context menu',
                           style: TextStyle(
                             fontSize: 14,
                           ),
                         ),
                         Text(
-                          '- AIO data storage',
+                          '- Remove Firebase trackers',
                           style: TextStyle(
                             fontSize: 14,
                           ),
                         ),
                         SizedBox(height: 10),
-                        Text(
-                            'Yeah we had some issues in previous version that is solved in current version. To read and know information about them, head over to Medium article about this version.'),
+                        Text('This version just has simple updates and there is not major update as we mentioned at the top. We are all working to create something great and simple without forgetting this is an open-source software.',),
                       ],
                     ),
                   ),
@@ -216,7 +215,7 @@ class _HomeState extends State<Home> {
                         await launch('https://gnu-amir.medium.com/whats-done-2-7-5-1cab20b21fcd');
                       },
                       child: Text(
-                        'Medium article about 2.7.5',
+                        'Medium article about 2.11.7',
                         style: TextStyle(
                           color: Colors.deepPurple,
                         ),
