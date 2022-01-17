@@ -65,6 +65,7 @@ class _TrashState extends State<Trash> {
                       return Dismissible(
                         key: UniqueKey(),
                         child: ListTile(
+                          onTap: () => modalBottom(context, task.name, task.note, true),
                           onLongPress: () => showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
@@ -78,7 +79,7 @@ class _TrashState extends State<Trash> {
                                       text: 'Review task',
                                       icon: FontAwesomeIcons.boxOpen,
                                       click: () {
-                                        modalBottom(context, task.name, task.note);
+                                        modalBottom(context, task.name, task.note, true);
                                       },
                                     ),
                                     MenuButton(
