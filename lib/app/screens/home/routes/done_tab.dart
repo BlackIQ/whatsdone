@@ -88,9 +88,10 @@ class _DoneTasksState extends State<DoneTasks> {
                                     text: 'Update task',
                                     icon: FontAwesomeIcons.edit,
                                     click: () {
+                                      Navigator.of(context).pop();
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
-                                          builder: (context) => UpdateTask(task: task),
+                                          builder: (context) => UpdateTask(task: task, trash: false),
                                         ),
                                       );
                                     },
