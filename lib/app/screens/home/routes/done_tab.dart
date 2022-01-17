@@ -54,6 +54,7 @@ class _DoneTasksState extends State<DoneTasks> {
                     return Dismissible(
                       key: UniqueKey(),
                       child: ListTile(
+                        onTap: () => modalBottom(context, task.name, task.note, false),
                         onLongPress: () => showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
@@ -67,7 +68,7 @@ class _DoneTasksState extends State<DoneTasks> {
                                     text: 'Review task',
                                     icon: FontAwesomeIcons.boxOpen,
                                     click: () {
-                                      modalBottom(context, task.name, task.note);
+                                      modalBottom(context, task.name, task.note, true);
                                     },
                                   ),
                                   MenuButton(
