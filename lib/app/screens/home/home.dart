@@ -212,7 +212,7 @@ class _HomeState extends State<Home> {
                   actions: [
                     TextButton(
                       onPressed: () async {
-                        await launch('https://gnu-amir.medium.com/whats-done-2-7-5-1cab20b21fcd');
+                        await launch('https://gnu-amir.medium.com/whats-done-2-11-9-99dc99aee842');
                       },
                       child: Text(
                         'Medium article about 2.11.7',
