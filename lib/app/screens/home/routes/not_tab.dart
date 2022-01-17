@@ -55,7 +55,8 @@ class _NotDoneState extends State<NotDone> {
                     return Dismissible(
                       key: UniqueKey(),
                       child: ListTile(
-                        onTap: () => modalBottom(context, task.name, task.note, false),
+                        onTap: () =>
+                            modalBottom(context, task.name, task.note, false),
                         onLongPress: () => showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
@@ -69,7 +70,8 @@ class _NotDoneState extends State<NotDone> {
                                     text: 'Review task',
                                     icon: FontAwesomeIcons.boxOpen,
                                     click: () {
-                                      modalBottom(context, task.name, task.note, true);
+                                      modalBottom(
+                                          context, task.name, task.note, true);
                                     },
                                   ),
                                   MenuButton(
@@ -80,7 +82,8 @@ class _NotDoneState extends State<NotDone> {
                                       Navigator.of(context).pop();
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
-                                          builder: (context) => OpenTask(task: task),
+                                          builder: (context) => OpenTask(
+                                              task: task, trash: false),
                                         ),
                                       );
                                     },
@@ -93,7 +96,8 @@ class _NotDoneState extends State<NotDone> {
                                       Navigator.of(context).pop();
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
-                                          builder: (context) => UpdateTask(task: task, trash: false),
+                                          builder: (context) => UpdateTask(
+                                              task: task, trash: false),
                                         ),
                                       );
                                     },
