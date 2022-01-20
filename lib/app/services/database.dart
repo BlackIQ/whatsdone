@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:whatsdone/app/models/task.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
