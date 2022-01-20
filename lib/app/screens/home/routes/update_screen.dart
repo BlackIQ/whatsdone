@@ -45,7 +45,7 @@ class _UpdateTaskState extends State<UpdateTask> {
         ),
         title: Text('Update task'),
         actions: [
-          FlatButton(
+          TextButton(
             onPressed: () {
               if (_name.text.isEmpty && _note.text.isEmpty) {
                 return showDialog(
