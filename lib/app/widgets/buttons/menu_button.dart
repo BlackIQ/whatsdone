@@ -16,23 +16,26 @@ class MenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      onPressed: click,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          FaIcon(
-            icon,
-            color: isDelete ? Colors.red : Colors.deepPurple,
-            size: 15,
-          ),
-          Text(
-            text,
-            style: TextStyle(
+    return Container(
+      height: 50,
+      child: TextButton(
+        onPressed: click,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            FaIcon(
+              icon,
               color: isDelete ? Colors.red : Colors.deepPurple,
+              size: 15,
             ),
-          )
-        ],
+            Text(
+              text,
+              style: TextStyle(
+                color: isDelete ? Colors.red : Colors.deepPurple,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

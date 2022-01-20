@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:whatsdone/app/screens/home/routes/review_tak_page.dart';
 import 'package:whatsdone/app/screens/home/routes/update_screen.dart';
 import 'package:whatsdone/app/services/database.dart';
@@ -55,8 +54,12 @@ class _NotDoneState extends State<NotDone> {
                     return Dismissible(
                       key: UniqueKey(),
                       child: ListTile(
-                        onTap: () =>
-                            modalBottom(context, task.name, task.note, false),
+                        onTap: () => modalBottom(
+                          context,
+                          task.name,
+                          task.note,
+                          false,
+                        ),
                         onLongPress: () => showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
